@@ -1,94 +1,105 @@
-/* VERSION: 1.0.3 */
-let currentQ = 0;
+// פונקציית הטעינה המרכזית
+document.addEventListener('DOMContentLoaded', () => {
+    renderMainMenu();
+});
 
-function router(view) {
-    // הסתרת כל הסקשנים
-    document.querySelectorAll('.view-section').forEach(section => section.classList.add('hidden'));
-    
-    // הצגת הסקשן הנבחר
-    const target = document.getElementById(`view-${view}`);
-    if (target) target.classList.remove('hidden');
-    
-    // עדכון תפריט תחתון
-    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-    const navItem = document.getElementById(`n-${view === 'study' ? 'lessons' : view}`);
-    if(navItem) navItem.classList.add('active');
-
-    if(view === 'lessons') renderLessons();
-    document.getElementById('main-content').scrollTop = 0;
-}
-
-function renderLessons() {
-    const list = document.getElementById('view-lessons');
-    list.innerHTML = `<h3 class="font-black text-xl mb-4 pr-2">תכנית הלימודים:</h3>`;
-    APP_DATA.forEach(lesson => {
-        list.innerHTML += `
-            <div onclick="openLesson(${lesson.id})" class="bg-white p-5 rounded-2xl border-2 border-slate-100 shadow-sm flex justify-between items-center cursor-pointer hover:border-blue-400 transition-all">
-                <div class="text-right">
-                    <span class="block text-xs font-bold text-blue-500 uppercase">פרק ${lesson.id + 1}</span>
-                    <span class="text-lg font-bold text-slate-800">${lesson.title}</span>
-                </div>
-                <span class="text-2xl">📖</span>
-            </div>`;
-    });
-}
-
-function openLesson(id) {
-    const lesson = APP_DATA.find(l => l.id === id);
-    document.getElementById('lesson-text').innerHTML = lesson.content;
-    currentQ = 0;
-    renderQuiz(lesson);
-    router('study');
-}
-
-function renderQuiz(lesson) {
-    const container = document.getElementById('lesson-quiz');
-    const q = lesson.questions[currentQ];
+function renderMainMenu() {
+    const container = document.getElementById('main-container');
     container.innerHTML = `
-        <div class="bg-blue-900 rounded-3xl p-6 text-white text-right shadow-xl mb-10">
-            <div class="text-[10px] uppercase font-bold bg-white/20 inline-block px-2 py-1 rounded mb-4">שאלה ${currentQ + 1}/${lesson.questions.length}</div>
-            <p class="text-lg font-bold mb-6">${q.q}</p>
-            <div class="space-y-3">
-                ${q.options.map((o, i) => `
-                    <button onclick="checkAns(${i}, ${lesson.id})" class="q-btn w-full p-4 bg-white text-slate-800 rounded-xl text-right font-bold text-sm shadow-sm hover:bg-blue-50 transition-all border-b-4 border-slate-200">
-                        ${o}
-                    </button>`).join('')}
-            </div>
-            <div id="fb" class="hidden mt-6 p-4 rounded-xl text-sm font-bold border border-white/20"></div>
-            <button id="next-btn" onclick="nextQ(${lesson.id})" class="hidden mt-6 w-full bg-green-500 p-4 rounded-xl font-black text-white shadow-lg animate-bounce">
-                לשאלה הבאה ←
+        <div class="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
+            <h1 class="text-4xl font-black text-blue-900 mb-4">הכנה לבחינת המתווכים</h1>
+            
+            <button onclick="showLessonsMenu()" class="w-64 p-6 bg-blue-600 text-white rounded-2xl shadow-xl hover:bg-blue-700 transform hover:scale-105 transition-all text-2xl font-bold">
+                📚 שיעורים (Lessons)
             </button>
-        </div>`;
+
+            <button onclick="startExamMode()" class="w-64 p-6 bg-orange-500 text-white rounded-2xl shadow-xl hover:bg-orange-600 transform hover:scale-105 transition-all text-2xl font-bold">
+                📝 מבחנים (Exams)
+            </button>
+        </div>
+    `;
 }
 
-function checkAns(idx, lessonId) {
-    const q = APP_DATA.find(l => l.id === lessonId).questions[currentQ];
-    const fb = document.getElementById('fb');
-    document.querySelectorAll('.q-btn').forEach(b => b.disabled = true);
-    fb.classList.remove('hidden');
+function showLessonsMenu() {
+    const container = document.getElementById('main-container');
+    let lessonsHtml = APP_DATA.map(lesson => `
+        <button onclick="loadLesson(${lesson.id})" class="w-full p-4 mb-3 bg-white border-2 border-blue-100 rounded-xl text-right hover:border-blue-500 transition-colors shadow-sm flex justify-between items-center">
+            <span class="text-xl font-bold text-slate-800">${lesson.title}</span>
+            <span class="text-blue-500 font-black">➔</span>
+        </button>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="max-w-2xl mx-auto py-6">
+            <div class="flex items-center justify-between mb-8">
+                <button onclick="renderMainMenu()" class="text-blue-600 font-bold">⬅ חזור לתפריט</button>
+                <h2 class="text-3xl font-black text-slate-900">רשימת שיעורים</h2>
+            </div>
+            ${lessonsHtml}
+        </div>
+    `;
+}
+
+function loadLesson(id) {
+    const lesson = APP_DATA.find(l => l.id === id);
+    const container = document.getElementById('main-container');
     
-    if(idx === q.correct) {
-        fb.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-green-500/20 text-green-200 border border-green-500/30 text-right";
-        fb.innerHTML = "🎯 נכון! <br>" + q.exp;
-    } else {
-        fb.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-red-500/20 text-red-100 border border-red-500/30 text-right";
-        fb.innerHTML = "💡 טעות. התשובה הנכונה היא: " + q.options[q.correct] + ". <br>" + q.exp;
-    }
-    document.getElementById('next-btn').classList.remove('hidden');
+    container.innerHTML = `
+        <div class="max-w-3xl mx-auto py-4 animate-fade-in">
+            <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-lg shadow-sm sticky top-0 z-10">
+                <button onclick="showLessonsMenu()" class="bg-slate-200 px-4 py-2 rounded-lg font-bold">חזור לרשימה</button>
+                <h2 class="text-xl font-black text-blue-900">${lesson.title}</h2>
+            </div>
+            
+            <div class="prose prose-blue max-w-none">
+                ${lesson.content}
+            </div>
+
+            <div class="mt-12 p-6 bg-white rounded-2xl shadow-inner border-2 border-slate-100">
+                <h3 class="text-2xl font-bold mb-4 text-center">תרגול מהיר</h3>
+                ${renderQuestions(lesson.questions)}
+            </div>
+
+            <div class="flex justify-between mt-8 space-x-4">
+                ${id < APP_DATA.length - 1 ? `<button onclick="loadLesson(${id + 1})" class="flex-1 bg-green-600 text-white p-4 rounded-xl font-bold text-xl shadow-lg">פרק הבא ➔</button>` : ''}
+                <button onclick="showLessonsMenu()" class="flex-1 bg-slate-500 text-white p-4 rounded-xl font-bold text-xl">סיום שיעור</button>
+            </div>
+        </div>
+    `;
+    window.scrollTo(0,0);
 }
 
-function nextQ(lessonId) {
-    const lesson = APP_DATA.find(l => l.id === lessonId);
-    currentQ++;
-    if(currentQ < lesson.questions.length) {
-        renderQuiz(lesson);
-        document.getElementById('lesson-quiz').scrollIntoView({ behavior: 'smooth' });
-    } else {
-        document.getElementById('lesson-quiz').innerHTML = `
-            <div class="bg-green-600 p-8 rounded-3xl text-white text-center shadow-xl mb-10">
-                <p class="text-2xl font-black mb-2 italic">כל הכבוד!</p>
-                <p class="opacity-90">סיימת את תרגול הפרק.</p>
-                <button onclick="router('lessons')" class="mt-6 bg-white text-green-700 font-black px-8 py-3 rounded-full">חזרה לסילבוס</button>
-            </div>`;
-    }
+function renderQuestions(questions) {
+    return questions.map((q, idx) => `
+        <div class="mb-8 p-4 bg-slate-50 rounded-lg">
+            <p class="font-bold text-lg mb-4">${q.q}</p>
+            <div class="grid grid-cols-1 gap-2">
+                ${q.options.map((opt, i) => `
+                    <button onclick="checkAnswer(this, ${i}, ${q.correct}, '${q.exp.replace(/'/g, "\\'")}')" class="text-right p-3 bg-white border border-slate-300 rounded-lg hover:bg-blue-50 transition-colors">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <div class="explanation hidden mt-4 p-3 bg-blue-100 text-blue-900 rounded-lg border-r-4 border-blue-500"></div>
+        </div>
+    `).join('');
+}
+
+function checkAnswer(btn, selected, correct, exp) {
+    const parent = btn.parentElement;
+    const buttons = parent.querySelectorAll('button');
+    const expDiv = parent.nextElementSibling;
+
+    buttons.forEach((b, i) => {
+        b.disabled = true;
+        if (i === correct) b.classList.add('bg-green-200', 'border-green-500');
+        if (i === selected && i !== correct) b.classList.add('bg-red-200', 'border-red-500');
+    });
+
+    expDiv.innerHTML = `<b>הסבר:</b> ${exp}`;
+    expDiv.classList.remove('hidden');
+}
+
+function startExamMode() {
+    alert("מצב מבחן (סימולציה) ייפתח בגרסה הבאה!");
 }
