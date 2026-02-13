@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>מערכת לימוד מתווכים - גרסה 4.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f4f8; margin: 0; }
+        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 20px; border-right: 8px solid #1e40af; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .question-box { background: #e0f2fe; padding: 20px; border-radius: 15px; margin-top: 25px; border: 2px solid #3b82f6; }
+        .ans-btn { display: block; width: 100%; text-align: right; padding: 12px; margin: 8px 0; background: white; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .ans-btn:hover { background: #f1f5f9; }
+    </style>
+</head>
+<body>
 
+    <div id="root" class="container mx-auto px-4 py-10 max-w-4xl">
+        </div>
+
+    <script>
+        // כל החומר הלימודי - 3 פרקים עמוקים
+        const DATA = [
+            {
+                title: "פרק 1: רישוי, אגרות ומוסדות (מורחב)",
+                content: `
+                    <div class="card">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">1. תנאי סף לקבלת רישיון (סעיף 5)</h3>
+                        <p><b>גיל:</b> 18 לפחות. | <b>אזרחות:</b> אזרח/תושב ישראל או זר עם היתר עבודה.</p>
+                        <p><b>עבר פלילי:</b> ללא עבירת <b>קלון</b> ב-5 השנים האחרונות. אם יש מאסר - הספירה מהשחרור!</p>
+                        <p><b>השכלה ובחינה:</b> 12 שנות לימוד ומעבר בחינה בציון 60.</p>
+                    </div>
+                    <div class="card" style="border-color: red;">
+                        <h3 class="text-xl font-bold text-red-800 mb-3">2. אגרות והשעיה (סעיף 18)</h3>
+                        <p>חובה לשלם עד ה-<b>31 במרץ</b>. ב-<b>1 באפריל</b> המתווך מושעה אוטומטית.</p>
+                        <p class="text-red-600 font-bold">פס"ד קנלר: פעולה בזמן השעיה שוללת את הזכות לדמי תיווך!</p>
+                    </div>
+                `,
+                q: "מתווך הורשע בקלון והשתחרר מהכלא בינואר 2025. מתי יוכל לקבל רישיון?",
+                options: ["בינואר 2025", "בינואר 2027", "בינואר 2030", "מיד עם תשלום הקנס"],
+                correct: 2,
+                exp: "החוק דורש המתנה של 5 שנים מיום השחרור (2025 + 5 = 2030)."
+            },
+            {
+                title: "פרק 2: הזמנה בכתב ואיסור משפטי (סעיף 9 ו-12)",
+                content: `
+                    <div class="card" style="border-color: #f59e0b;">
+                        <h3 class="text-xl font-bold text-amber-800 mb-3">1. חמשת פרטי החובה בהזמנה</h3>
+                        <p>1. שמות ות.ז. | 2. סוג עסקה. | 3. תיאור נכס. | 4. מחיר בקירוב. | 5. עמלה מוסכמת.</p>
+                    </div>
+                    <div class="card" style="border-color: #7c3aed;">
+                        <h3 class="text-xl font-bold text-purple-800 mb-3">2. איסור סיוע משפטי (סעיף 12)</h3>
+                        <p><b>אסור</b> למתווך לערוך זיכרון דברים או חוזה. הפרה של סעיף זה גורמת לאובדן <b>כל העמלה</b>.</p>
+                    </div>
+                `,
+                q: "מה קורה למתווך שסייע לצדדים לנסח את חוזה המכר?",
+                options: ["מותר לו אם הוא בבלעדיות", "הוא מאבד את הזכאות לדמי תיווך", "הוא יקבל רק חצי עמלה", "זה מותר אם לא גבה על זה כסף"],
+                correct: 1,
+                exp: "סעיף 12 אוסר על פעולות משפטיות וביטולו גורר שלילת עמלה."
+            },
+            {
+                title: "פרק 3: בלעדיות - תנאים ותקופות",
+                content: `
+                    <div class="card" style="border-color: #10b981;">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">1. תנאים לבלעדיות</h3>
+                        <p>חובה: <b>מסמך נפרד</b> + ביצוע <b>2 פעולות שיווק</b> לפחות.</p>
+                    </div>
+                    <div class="card" style="border-color: #ec4899;">
+                        <h3 class="text-xl font-bold text-pink-800 mb-3">2. תקופות זמן</h3>
+                        <p><b>מגורים:</b> מקסימום 6 חודשים. (אם לא צוין: 30 יום).</p>
+                        <p><b>עסקי:</b> ללא הגבלה. (אם לא צוין: שנה).</p>
+                    </div>
+                `,
+                q: "מהי תקופת הבלעדיות המקסימלית לדירת מגורים?",
+                options: ["3 חודשים", "6 חודשים", "שנה אחת", "חודש אחד"],
+                correct: 1,
+                exp: "לפי סעיף 9, בלעדיות לדירת מגורים מוגבלת ל-6 חודשים בלבד."
+            }
+        ];
+
+        const root = document.getElementById('root');
+
+        // תפריט ראשי
+        function showMenu() {
+            root.innerHTML = `
+                <div class="text-center py-10">
+                    <h1 class="text-4xl font-black text-blue-900 mb-10">לימוד למבחן המתווכים</h1>
+                    <button onclick="showLessonsList()" class="w-64 p-6 bg-blue-600 text-white rounded-2xl text-2xl font-bold mb-6 shadow-xl hover:bg-blue-700 block mx-auto underline italic">📚 שיעורים (Lessons)</button>
+                    <button onclick="alert('בפיתוח')" class="w-64 p-6 bg-orange-500 text-white rounded-2xl text-2xl font-bold shadow-xl hover:bg-orange-600 block mx-auto">📝 מבחנים (Exams)</button>
+                </div>
+            `;
+        }
+
+        // רשימת שיעורים
+        function showLessonsList() {
+            let list = DATA.map((item, index) => `
+                <button onclick="openLesson(${index})" class="w-full p-6 mb-4 bg-white border-2 border-blue-100 rounded-xl text-right font-bold text-xl hover:border-blue-500 flex justify-between shadow-sm">
+                    <span>${item.title}</span>
+                    <span>➔</span>
+                </button>
+            `).join('');
+
+            root.innerHTML = `
+                <button onclick="showMenu()" class="mb-6 text-blue-600 font-bold underline">⬅ חזור לתפריט</button>
+                <h2 class="text-3xl font-black mb-8 text-right">בחר שיעור (3 פרקים)</h2>
+                ${list}
+            `;
+        }
+
+        // פתיחת שיעור ספציפי
+        function openLesson(index) {
+            const lesson = DATA[index];
+            root.innerHTML = `
+                <div class="text-right">
+                    <button onclick="showLessonsList()" class="mb-4 text-blue-600 font-bold underline">⬅ חזור לרשימה</button>
+                    <h2 class="text-2xl font-black mb-6 text-blue-900">${lesson.title}</h2>
+                    <div>${lesson.content}</div>
+                    
+                    <div class="question-box">
+                        <h4 class="font-bold text-lg mb-3">שאלת תרגול:</h4>
+                        <p class="mb-4 font-bold text-slate-700">${lesson.q}</p>
+                        ${lesson.options.map((opt, i) => `
+                            <button onclick="checkAns(${index}, ${i})" class="ans-btn">${opt}</button>
+                        `).join('')}
+                        <div id="feedback" class="mt-4 p-3 rounded hidden font-bold"></div>
+                    </div>
+
+                    <div class="mt-10">
+                        ${index < DATA.length - 1 ? `<button onclick="openLesson(${index + 1})" class="w-full bg-green-600 text-white p-5 rounded-xl font-bold text-xl shadow-lg">לשיעור הבא ➔</button>` : ''}
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0,0);
+        }
+
+        // בדיקת תשובה
+        function checkAns(lIndex, aIndex) {
+            const feedback = document.getElementById('feedback');
+            const lesson = DATA[lIndex];
+            feedback.style.display = 'block';
+            if(aIndex === lesson.correct) {
+                feedback.innerHTML = "✅ נכון! " + lesson.exp;
+                feedback.style.backgroundColor = "#dcfce7";
+                feedback.style.color = "#166534";
+            } else {
+                feedback.innerHTML = "❌ טעות. " + lesson.exp;
+                feedback.style.backgroundColor = "#fee2e2";
+                feedback.style.color = "#991b1b";
+            }
+        }
+
+        // הפעלה
+        showMenu();
+    </script>
+</body>
+</html>
