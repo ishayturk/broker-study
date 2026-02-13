@@ -13,17 +13,17 @@
         nav { position: absolute; bottom: 0; left: 0; right: 0; height: 75px; background: white; display: flex; border-top: 1px solid #e2e8f0; }
         .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 13px; cursor: pointer; }
         .nav-btn.active { color: #2563eb; border-top: 3px solid #2563eb; }
-        .prose h2 { font-size: 1.5rem; font-bold; color: #1e40af; margin-bottom: 1rem; border-bottom: 2px solid #dbeafe; }
     </style>
 </head>
 <body>
     <div class="app-wrapper">
         <header class="bg-white p-4 text-center shadow-sm font-bold text-blue-600 border-b">מתווך-PRO</header>
+        
         <main id="main-view">
             <div id="view-home">
                 <div class="bg-blue-600 p-6 rounded-2xl text-white shadow-lg mb-4">
-                    <h2 class="text-xl font-bold">ברוך הבא ישי</h2>
-                    <p class="text-sm opacity-80">מוכן ללמוד למבחן?</p>
+                    <h2 class="text-xl font-bold">שלום ישי</h2>
+                    <p class="text-sm opacity-80 italic">המטרה: רישיון תיווך 2026</p>
                 </div>
                 <button onclick="router('lessons')" class="w-full bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-sm flex items-center gap-4 mb-4 active:scale-95 transition-all">
                     <span class="text-3xl">📚</span>
@@ -34,15 +34,22 @@
                     <div class="text-right"><div class="font-bold text-lg">מבחן סימולציה</div></div>
                 </button>
             </div>
-            <div id="view-lessons" class="hidden"><div id="lessons-list" class="space-y-3"></div></div>
-            <div id="view-study" class="hidden">
-                <button onclick="router('lessons')" class="text-blue-600 font-bold mb-4">← חזרה</button>
-                <div id="study-content" class="prose bg-white p-4 rounded-xl shadow-sm"></div>
+
+            <div id="view-lessons" class="hidden">
+                <h3 class="font-bold text-lg mb-4 text-slate-800 border-b pb-2">פרקי לימוד:</h3>
+                <div id="lessons-list" class="space-y-3"></div>
             </div>
+
+            <div id="view-study" class="hidden">
+                <button onclick="router('lessons')" class="text-blue-600 font-bold mb-4 flex items-center gap-1"><span>→</span> חזרה לרשימה</button>
+                <div id="study-content" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 prose prose-blue"></div>
+            </div>
+
             <div id="view-exams" class="hidden space-y-4">
-                <div id="quiz-container"></div>
+                <div id="quiz-area"></div>
             </div>
         </main>
+
         <nav>
             <div onclick="router('home')" id="nav-home" class="nav-btn active"><span>🏠</span><span>בית</span></div>
             <div onclick="router('lessons')" id="nav-lessons" class="nav-btn"><span>📚</span><span>לימוד</span></div>
