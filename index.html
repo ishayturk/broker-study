@@ -3,101 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>לימוד מתווכים 3.0</title>
+    <title>לימוד מתווכים - גרסת עומק 2.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap');
-        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; }
-        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Assistant', sans-serif; background-color: #f1f5f9; }
+        .law-card { border-right-width: 8px; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .highlight { color: #1d4ed8; font-weight: 800; }
+        .warning { color: #dc2626; font-weight: 800; }
     </style>
 </head>
 <body>
 
-    <div id="main-container" class="container mx-auto px-4 py-8">
-        </div>
+    <div id="main-container" class="container mx-auto px-4 py-8"></div>
 
     <script>
-        /* נתונים עמוקים - גרסה 3.0 */
         const APP_DATA = [
             {
                 id: 0,
-                title: "פרק 1: רישוי, אגרות ומוסדות",
+                title: "פרק 1: חוק המתווכים - רישוי ומוסדות (עומק מלא)",
                 content: `
                     <div class="space-y-6 text-right">
-                        <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
-                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">1. תנאי סף לקבלת רישיון (סעיף 5)</h2>
-                            <ul class="space-y-4 text-slate-800 font-bold">
-                                <li>📍 גיל 18 לפחות ביום הגשת הבקשה.</li>
-                                <li>📍 אזרח ישראל / תושב ישראל / תושב חוץ עם היתר עבודה.</li>
-                                <li>📍 ללא הרשעה בעבירה שיש עמה קלון ב-5 השנים האחרונות (הספירה מהשחרור מהמאסר).</li>
-                                <li>📍 לא פושט רגל (אלא אם יש לו הפטר חלוט).</li>
-                                <li>📍 12 שנות לימוד ומעבר בחינה בציון 60.</li>
+                        <section class="law-card bg-white border-blue-700">
+                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">תנאי סף לקבלת רישיון (סעיף 5)</h2>
+                            <p class="mb-4 text-lg">כדי לקבל רישיון, על המועמד לעמוד ב-6 תנאים מצטברים:</p>
+                            <ul class="space-y-4">
+                                <li><span class="highlight">1. גיל:</span> בן 18 לפחות. <span class="italic text-sm">(חשוב: ביום הגשת הבקשה, לא ביום הבחינה).</span></li>
+                                <li><span class="highlight">2. אזרחות/תושבות:</span> אזרח ישראל, תושב ישראל, או <span class="underline">תושב חוץ</span> בעל היתר עבודה חוקי לפי חוק הכניסה לישראל.</li>
+                                <li><span class="highlight">3. עבר פלילי וקלון:</span> לא הורשע בעבירה שיש עמה קלון ב-5 השנים שקדמו לבקשה. 
+                                    <div class="bg-red-50 p-3 mt-2 rounded border-r-4 border-red-500 text-sm">
+                                        <b>דגש למבחן:</b> אם המועמד ריצה עונש מאסר בפועל, ספירת 5 השנים מתחילה <b>מיום סיום ריצוי העונש</b> (יום השחרור), ולא מיום גזר הדין.
+                                    </div>
+                                </li>
+                                <li><span class="highlight">4. פשיטת רגל:</span> לא הוכרז כפושט רגל. אם הוכרז - עליו להציג צו "הפטר חלוט" מבית משפט.</li>
+                                <li><span class="highlight">5. השכלה:</span> סיים 12 שנות לימוד לפחות (יש להמציא תעודה או אישור שקילות).</li>
+                                <li><span class="highlight">6. הבחינה:</span> עבר בהצלחה בציון 60 ומעלה.</li>
                             </ul>
                         </section>
-                        <section class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-700 shadow-md">
-                            <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-700 pb-2">2. אגרות והשעיה (סעיף 18)</h2>
-                            <p class="font-black text-red-800 underline">המועד הקובע: 31 במרץ.</p>
-                            <p>מתווך שלא שילם עד תאריך זה - מושעה אוטומטית ב-1 באפריל. פעולה בזמן השעיה שוללת זכאות לדמי תיווך!</p>
+
+                        <section class="law-card bg-white border-red-700">
+                            <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-200 pb-2">אגרות והשעיה אוטומטית (סעיף 18)</h2>
+                            <p class="font-bold mb-2 underline">המועד הקובע: 31 במרץ.</p>
+                            <p class="leading-relaxed">האגרה היא שנתית (ינואר-דצמבר). מתווך שלא שילם את האגרה השנתית עד ה-31 במרץ, הופך ל<span class="warning">מושעה אוטומטית</span> ב-1 באפריל. אין חובת הודעה מהרשם.</p>
+                            <div class="mt-4 p-4 bg-slate-100 rounded-xl">
+                                <p class="font-black">הלכת מאיר נ' קנלר (פסק דין קריטי):</p>
+                                <p class="text-sm italic">מתווך שביצע פעולת תיווך בזמן שהיה מושעה (אפילו ב-2 באפריל) אינו זכאי לדמי תיווך מהלקוח, גם אם היה "הגורם היעיל". החוק רואה בו כמי שביצע עבירה פלילית ולא מקים לו זכות כספית.</p>
+                            </div>
+                        </section>
+
+                        <section class="law-card bg-white border-amber-600">
+                            <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-200 pb-2">מוסדות ונושאי תפקיד</h2>
+                            <ul class="space-y-3">
+                                <li><b>רשם המתווכים:</b> עובד מדינה, משפטן הכשיר להיות שופט שלום. תפקידו: ניהול הפנקס, הנפקת רישיונות, וגביית אגרות.</li>
+                                <li><b>ועדת משמעת:</b> ממונה ע"י שר המשפטים. הרכב של 3: יו"ר (כשיר לשופט שלום), מתווך בעל ותק של 5 שנים לפחות, ונציג ציבור.</li>
+                            </ul>
                         </section>
                     </div>
                 `
             },
             {
                 id: 1,
-                title: "פרק 2: הזמנה בכתב וסעיף 12",
+                title: "פרק 2: הזמנה בכתב וסעיף 12 (דרישות קוגנטיות)",
                 content: `
                     <div class="space-y-6 text-right">
-                        <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
-                            <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2">1. חמשת פרטי החובה</h2>
-                            <p class="font-bold underline mb-2 italic">חובה להופיע בהזמנה:</p>
-                            <ol class="list-decimal pr-8 font-bold space-y-2">
-                                <li>שמות ות.ז (מתווך ולקוח).</li>
-                                <li>סוג עסקה (מכירה/שכירות).</li>
-                                <li>תיאור הנכס (כתובת).</li>
-                                <li>מחיר בקירוב.</li>
-                                <li>דמי תיווך מוסכמים (+מע"מ לצרכן).</li>
+                        <section class="law-card bg-white border-blue-800">
+                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">דרישת הכתב (סעיף 9)</h2>
+                            <p class="mb-4">מתווך במקרקעין לא יהיה זכאי לדמי תיווך אלא אם כן חתם הלקוח על הזמנה בכתב. חוק המתווכים הוא <span class="highlight">חוק קוגנטי</span> (לא ניתן להתנות עליו).</p>
+                            
+                            <h3 class="font-bold text-lg mb-2 underline">5 פרטי החובה בהזמנה (תקנות המתווכים):</h3>
+                            <ol class="list-decimal pr-8 space-y-2 font-bold text-slate-700">
+                                <li>פרטי המתווך והלקוח: שמות, כתובות ומספרי תעודת זהות.</li>
+                                <li>סוג העסקה: מכירה, קנייה, שכירות וכו'.</li>
+                                <li>תיאור הנכס: כתובת מלאה או תיאור זיהוי חד משמעי.</li>
+                                <li>מחיר העסקה בקירוב: הסכום שהמוכר מבקש או שהקונה מוכן לשלם.</li>
+                                <li>עמלת התיווך המוסכמת: סכום קבוע או אחוז מהעסקה. <span class="warning">(מול צרכן פרטי - החובה לציין אם המחיר כולל מע"מ!)</span>.</li>
                             </ol>
                         </section>
-                        <section class="bg-red-100 p-6 rounded-2xl border-r-8 border-red-800 shadow-md">
-                            <h2 class="text-xl font-black text-red-900 mb-2 underline">סעיף 12 - איסור סיוע משפטי:</h2>
-                            <p class="font-bold">אסור למתווך לערוך זיכרון דברים או חוזה. עבר על זה? הפסיד את כל העמלה!</p>
-                        </section>
-                    </div>
-                `
-            },
-            {
-                id: 2,
-                title: "פרק 3: בלעדיות - התנאים והתקופות",
-                content: `
-                    <div class="space-y-6 text-right">
-                        <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
-                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">1. תנאי הבלעדיות</h2>
-                            <p class="font-bold text-lg">חובה מצטברת:</p>
-                            <p>1. חתימה על מסמך נפרד מההזמנה.</p>
-                            <p>2. ביצוע 2 פעולות שיווק (שלט, פרסום וכו').</p>
-                        </section>
-                        <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
-                            <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2">2. תקופות זמן מקסימליות</h2>
-                            <p class="font-bold text-red-700">דירת מגורים: עד 6 חודשים. (ללא תאריך: 30 יום).</p>
-                            <p class="font-bold">נכס עסקי: אין הגבלה. (ללא תאריך: שנה).</p>
+
+                        <section class="law-card bg-red-50 border-red-800">
+                            <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-200 pb-2">איסור פעולות משפטיות (סעיף 12)</h2>
+                            <p class="font-bold text-lg leading-relaxed">זהו אחד הסעיפים המחמירים ביותר בחוק. למתווך <span class="warning">חל איסור מוחלט</span> לערוך מסמכים בעלי אופי משפטי או לסייע בעריכתם.</p>
+                            <div class="bg-white p-4 mt-4 rounded shadow-inner">
+                                <p class="font-bold mb-2 underline">מה זה אומר בפועל?</p>
+                                <ul class="list-disc pr-6 space-y-2 text-sm">
+                                    <li>אסור למלא "טופס מוכן" של זיכרון דברים.</li>
+                                    <li>אסור לנסח סעיפים בחוזה המכר.</li>
+                                    <li>אסור לייעץ משפטית לגבי תוקפו של חוזה.</li>
+                                </ul>
+                                <p class="mt-4 text-red-700 font-black">התוצאה של הפרת סעיף 12:</p>
+                                <p class="font-bold">אובדן מוחלט של הזכאות לדמי תיווך, גם אם העסקה הושלמה והמתווך עבד קשה.</p>
+                            </div>
                         </section>
                     </div>
                 `
             }
         ];
 
-        /* לוגיקה פנימית */
         function renderMainMenu() {
             document.getElementById('main-container').innerHTML = `
                 <div class="flex flex-col items-center justify-center min-h-[70vh] space-y-8 animate-fade-in">
-                    <h1 class="text-4xl font-black text-blue-900 mb-4">הכנה למבחן המתווכים</h1>
-                    
-                    <button onclick="showLessonsList()" class="w-72 p-6 bg-blue-600 text-white rounded-2xl shadow-xl hover:bg-blue-700 transform hover:scale-105 transition-all text-2xl font-bold italic underline">
+                    <h1 class="text-4xl font-black text-blue-900 mb-4">קורס הכנה מקיף למתווכים</h1>
+                    <button onclick="showLessonsList()" class="w-80 p-6 bg-blue-700 text-white rounded-2xl shadow-2xl hover:bg-blue-800 transform hover:scale-105 transition-all text-2xl font-extrabold italic underline">
                         📚 שיעורים (Lessons)
                     </button>
-
-                    <button onclick="alert('המבחנים יתווספו בגרסה 4.0')" class="w-72 p-6 bg-orange-500 text-white rounded-2xl shadow-xl hover:bg-orange-600 transform hover:scale-105 transition-all text-2xl font-bold">
+                    <button onclick="alert('המבחנים בבנייה')" class="w-80 p-6 bg-orange-600 text-white rounded-2xl shadow-xl hover:bg-orange-700 transform hover:scale-105 transition-all text-2xl font-bold">
                         📝 מבחנים (Exams)
                     </button>
                 </div>
@@ -106,17 +115,17 @@
 
         function showLessonsList() {
             const list = APP_DATA.map(lesson => `
-                <button onclick="loadLesson(${lesson.id})" class="w-full p-6 mb-4 bg-white border-2 border-blue-100 rounded-2xl text-right hover:border-blue-600 shadow-md flex justify-between items-center group">
-                    <span class="text-xl font-bold text-slate-800 group-hover:text-blue-600">${lesson.title}</span>
-                    <span class="text-blue-500 text-2xl">➔</span>
+                <button onclick="loadLesson(${lesson.id})" class="w-full p-8 mb-4 bg-white border-2 border-blue-100 rounded-3xl text-right hover:border-blue-700 shadow-lg flex justify-between items-center group transition-all">
+                    <span class="text-2xl font-black text-slate-800 group-hover:text-blue-700">${lesson.title}</span>
+                    <span class="text-blue-600 text-3xl font-black">➔</span>
                 </button>
             `).join('');
 
             document.getElementById('main-container').innerHTML = `
-                <div class="max-w-2xl mx-auto py-8 animate-fade-in">
-                    <div class="flex justify-between items-center mb-8">
-                        <button onclick="renderMainMenu()" class="text-blue-600 font-bold">⬅ חזור לתפריט</button>
-                        <h2 class="text-3xl font-black">רשימת שיעורים</h2>
+                <div class="max-w-4xl mx-auto py-8 animate-fade-in text-right">
+                    <div class="flex justify-between items-center mb-10">
+                        <button onclick="renderMainMenu()" class="bg-slate-300 px-6 py-2 rounded-xl font-bold hover:bg-slate-400">⬅ חזור</button>
+                        <h2 class="text-4xl font-black text-slate-900 border-b-8 border-blue-600 pb-2">תכנית הלימודים</h2>
                     </div>
                     ${list}
                 </div>
@@ -126,24 +135,23 @@
         function loadLesson(id) {
             const lesson = APP_DATA.find(l => l.id === id);
             document.getElementById('main-container').innerHTML = `
-                <div class="max-w-3xl mx-auto py-4 animate-fade-in">
-                    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4 z-10 border-b">
-                        <button onclick="showLessonsList()" class="text-blue-600 font-bold italic underline">⬅ חזור לרשימה</button>
-                        <h2 class="text-xl font-black text-blue-900">${lesson.title}</h2>
+                <div class="max-w-4xl mx-auto py-4 animate-fade-in text-right">
+                    <div class="flex justify-between items-center mb-8 sticky top-0 bg-[#f1f5f9] py-4 z-10 border-b-2 border-slate-300">
+                        <button onclick="showLessonsList()" class="text-blue-700 font-extrabold italic underline text-xl">⬅ חזור לרשימה</button>
+                        <h2 class="text-2xl font-black text-blue-900">${lesson.title}</h2>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 mb-8">
+                    <div class="mb-12">
                         ${lesson.content}
                     </div>
-                    <div class="flex gap-4">
-                        ${id < APP_DATA.length - 1 ? `<button onclick="loadLesson(${id + 1})" class="flex-1 bg-green-600 text-white p-5 rounded-2xl font-black text-xl shadow-lg">פרק הבא ➔</button>` : ''}
-                        <button onclick="showLessonsList()" class="flex-1 bg-slate-500 text-white p-5 rounded-2xl font-black text-xl">סיום</button>
+                    <div class="flex gap-6 mt-10">
+                        ${id < APP_DATA.length - 1 ? `<button onclick="loadLesson(${id + 1})" class="flex-[2] bg-green-700 text-white p-6 rounded-2xl font-black text-2xl shadow-2xl hover:bg-green-800 transition-all">המשך לפרק הבא ➔</button>` : ''}
+                        <button onclick="showLessonsList()" class="flex-1 bg-slate-600 text-white p-6 rounded-2xl font-black text-xl hover:bg-slate-700">סיום יחידה</button>
                     </div>
                 </div>
             `;
             window.scrollTo(0,0);
         }
 
-        // הפעלה ראשונית
         renderMainMenu();
     </script>
 </body>
