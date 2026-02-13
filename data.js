@@ -1,147 +1,92 @@
-/* VERSION: 1.0.3.5
-   CONTENT: Chapters 1, 2, 3, 4 & 5 - Full Detailed Content
+/* VERSION: 1.0.3.6
+   CONTENT: Chapter 1 - HYPER-DETAILED
    LAST UPDATED: 2026-02-13
 */
 
 const APP_DATA = [
     {
         id: 0,
-        title: "פרק 1: רישוי, אגרות ומוסדות",
+        title: "פרק 1: חוק המתווכים - רישוי ומוסדות (המדריך המלא)",
         content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-blue-50 p-5 rounded-xl border-r-8 border-blue-600 shadow-md">
-                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">תנאי סף ורישוי (סעיף 5)</h2>
-                    <ul class="space-y-2 text-slate-800 font-medium">
-                        <li>✅ <b>גיל 18:</b> במועד הגשת הבקשה.</li>
-                        <li>✅ <b>אזרחות/תושבות:</b> אזרח, תושב ישראל או תושב חוץ עם היתר עבודה.</li>
-                        <li>✅ <b>עבר פלילי:</b> 5 שנים ללא עבירה עם קלון. המוקש: אם היה מאסר, סופרים 5 שנים מהשחרור.</li>
-                        <li>✅ <b>פשיטת רגל:</b> חייב להציג צו הפטר חלוט.</li>
-                        <li>✅ <b>השכלה:</b> 12 שנות לימוד.</li>
-                    </ul>
-                </section>
-                <section class="bg-red-50 p-5 rounded-xl border-r-8 border-red-600">
-                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic">אגרות והשעיה (סעיף 18):</h3>
-                    <p class="font-bold">תשלום עד 31 במרץ. ב-1 באפריל: השעיה אוטומטית.</p>
-                </section>
-            </div>
-        `,
-        questions: [
-            { q: "מתי נספרות 5 השנים ללא קלון אם אדם ישב במאסר?", options: ["מיום גזר הדין", "מיום סיום ריצוי העונש בפועל", "מיום הגשת הבקשה", "מיום ביצוע העבירה"], correct: 1, exp: "הספירה מתחילה רק לאחר סיום ריצוי העונש." }
-        ]
-    },
-    {
-        id: 1,
-        title: "פרק 2: הזמנה בכתב וזכאות",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-amber-50 p-5 rounded-xl border-r-8 border-amber-500 shadow-md">
-                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2 italic">חמשת פרטי החובה:</h2>
-                    <ol class="list-decimal pr-6 space-y-2 font-bold">
-                        <li>שמות, כתובות ות.ז (מתווך + לקוח).</li>
-                        <li>סוג העסקה (מכירה/שכירות).</li>
-                        <li>תיאור הנכס.</li>
-                        <li>מחיר מבוקש בקירוב.</li>
-                        <li>דמי התיווך המוסכמים (+ מעמ לפרטי).</li>
-                    </ol>
-                </section>
-                <section class="bg-red-50 p-5 rounded-xl border-r-8 border-red-600">
-                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic">איסור פעולה משפטית:</h3>
-                    <p>מתווך שעזר לכתוב זיכרון דברים או חוזה - <b>מפסיד את כל העמלה שלו</b>.</p>
-                </section>
-            </div>
-        `,
-        questions: [
-            { q: "האם מתווך רשאי למלא פרטי נכס בזיכרון דברים?", options: ["כן", "מותר רק בחינם", "אסור מוחלט ושולל עמלה", "מותר רק בבלעדיות"], correct: 2, exp: "סעיף 12 אוסר סיוע בעריכת מסמך משפטי." }
-        ]
-    },
-    {
-        id: 2,
-        title: "פרק 3: בלעדיות (תקופות ושיווק)",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-blue-50 p-5 rounded-xl border-r-8 border-blue-600 shadow-md">
-                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">תקופות זמן בבלעדיות:</h2>
-                    <ul class="space-y-3 font-bold">
-                        <li>🏠 <b>דירת מגורים:</b> עד 6 חודשים.</li>
-                        <li>🕒 <b>ללא ציון זמן במגורים:</b> מסתיים תוך 30 יום.</li>
-                        <li>🏗️ <b>נכס אחר:</b> כמה שסיכמו (בהעדר סיכום - שנה).</li>
-                    </ul>
-                </section>
-                <section class="p-4 bg-green-50 rounded-lg">
-                    <h3 class="font-bold text-green-900 mb-2 italic">חזקת הגורם היעיל:</h3>
-                    <p>בבלעדיות עם פעולות שיווק, החוק מניח שהמתווך הוא הגורם היעיל.</p>
-                </section>
-            </div>
-        `,
-        questions: [
-            { q: "מהי תקופת הבלעדיות המקסימלית לדירת מגורים?", options: ["שנה", "3 חודשים", "6 חודשים", "30 יום"], correct: 2, exp: "סעיף 9ב קובע מקסימום של חצי שנה למגורים." }
-        ]
-    },
-    {
-        id: 3,
-        title: "פרק 4: חובת הגינות וגילוי",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-purple-50 p-5 rounded-xl border-r-8 border-purple-600 shadow-md">
-                    <h2 class="text-2xl font-black text-purple-800 mb-4 border-b-2 border-purple-600 pb-2 italic">גילוי עניין אישי (סעיף 10):</h2>
-                    <p class="font-bold text-slate-800">מתווך לא יתווך בעסקה שיש לו בה עניין אישי אלא אם:</p>
-                    <ul class="list-disc pr-6 mt-2 space-y-2 font-bold">
-                        <li>גילה ללקוח את העניין האישי.</li>
-                        <li>קיבל הסכמה <b>בכתב</b>.</li>
-                    </ul>
-                </section>
-                <section class="p-4 bg-slate-50 rounded-lg">
-                    <h3 class="font-bold text-slate-900 mb-2 underline italic">חובת הגינות (סעיף 8):</h3>
-                    <p>חובה למסור ללקוח כל מידע מהותי הנוגע לנכס, גם אם המוכר ביקש להסתיר זאת.</p>
-                </section>
-            </div>
-        `,
-        questions: [
-            { q: "מתווך רוצה למכור דירה של אחיו. מה עליו לעשות?", options: ["כלום", "גילוי נאות בעל פה", "גילוי נאות והסכמה בכתב", "אסור לו לתווך"], correct: 2, exp: "סעיף 10 מחייב גילוי עניין אישי והסכמה בכתב." }
-        ]
-    },
-    {
-        id: 4,
-        title: "פרק 5: חוק הגנת הצרכן",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section>
-                    <h2 class="text-2xl font-black text-green-800 mb-4 border-b-2 border-green-600 pb-2 italic text-right italic font-bold">עסקת רוכלות וביטול עסקה</h2>
-                    <p class="text-lg leading-relaxed font-bold text-slate-700">חוק הגנת הצרכן חל על מתווכים מול לקוחות פרטיים. הנושא הכי שכיח בבחינה הוא "עסקת רוכלות".</p>
+            <div class="space-y-8 text-right" dir="rtl">
+                <section class="bg-slate-50 p-6 rounded-2xl border-r-8 border-slate-800 shadow-sm">
+                    <h2 class="text-2xl font-black text-slate-900 mb-4 border-b-2 border-slate-800 pb-2 italic">1. מבוא ומהות החוק</h2>
+                    <p class="text-lg leading-relaxed text-slate-700 font-medium">
+                        חוק המתווכים במקרקעין (התשנ"ו-1996) הוא חוק <b>צרכני-קוגנטי</b>. זה אומר שמטרתו להגן על הצרכן מפני המתווך (שנחשב לצד החזק). 
+                        <br><br>
+                        <span class="text-red-700 font-bold underline">כלל הברזל:</span> לאדם אסור לעסוק בתיווך מקרקעין (גם לא כ"עוזר" או "יועץ") ללא רישיון תקף. מי שעושה זאת עובר עבירה פלילית.
+                    </p>
                 </section>
 
-                <section class="bg-green-50 p-5 rounded-xl border-r-8 border-green-600 shadow-md">
-                    <h3 class="font-bold text-green-900 mb-4 text-xl underline italic text-right italic font-bold">1. מהי עסקת רוכלות?</h3>
-                    <p class="font-medium text-slate-800">עסקה שנעשתה <b>לא במקום העסק</b> הקבוע של המתווך (למשל: בבית הלקוח, בבית קפה, או ברחוב).</p>
+                <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
+                    <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-700 pb-2 italic text-right italic font-bold">2. ניתוח תנאי סף (סעיף 5)</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-black text-blue-800 mb-2 underline italic text-right italic font-bold">א. כשירות פלילית (הסעיף הכי נשאל)</h3>
+                            <p class="text-slate-800 leading-relaxed">
+                                המועמד לא הורשע בעבירה שיש עמה <b>קלון</b> ב-5 השנים שקדמו לבקשה. 
+                                <br><br>
+                                <b>מהו קלון?</b> פגם מוסרי (מרמה, גניבה, הונאה). 
+                                <br><b>סוגיית המאסר:</b> אם אדם נשפט ל-10 שנות מאסר והשתחרר היום, הוא יוכל לקבל רישיון רק בעוד 5 שנים מהיום. 5 השנים נספרות <b>מרגע היציאה לחופשי</b> (סיום ריצוי העונש בפועל).
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-black text-blue-800 mb-2 underline italic text-right italic font-bold">ב. פשיטת רגל והפטר</h3>
+                            <p class="text-slate-800 leading-relaxed">
+                                פושט רגל אינו יכול לקבל רישיון. החוק דורש יציבות כלכלית. 
+                                <br><b>החריג:</b> אם ניתן לו "צו הפטר חלוט", המשמעות היא שבית המשפט מחק את חובותיו והוא נקי לצאת לדרך חדשה - רק אז יוכל לבקש רישיון.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-black text-blue-800 mb-2 underline italic text-right italic font-bold">ג. תושבות זרה</h3>
+                            <p class="text-slate-800 leading-relaxed">
+                                האם תושב ארה"ב יכול להיות מתווך בישראל? <b>כן.</b> 
+                                בתנאי שיש לו היתר עבודה חוקי בישראל לפי חוק הכניסה לישראל. הוא לא חייב להיות אזרח, אך הוא חייב להיות תושב חוקי עם אישור עבודה.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
-                <section class="bg-amber-50 p-5 rounded-xl border-r-8 border-amber-600">
-                    <h3 class="font-bold text-amber-900 mb-3 text-xl underline italic text-right italic font-bold">2. זכות הביטול (המספרים החשובים):</h3>
-                    <ul class="space-y-4 font-bold text-slate-800 italic underline italic">
-                        <li>🕒 <b>זמן לביטול:</b> תוך 14 יום מיום עשיית ההסכם או מיום קבלת הטופס (לפי המאוחר).</li>
-                        <li>💰 <b>דמי ביטול:</b> 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).</li>
-                        <li>❌ <b>ביטול בשל הטעיה:</b> אם המתווך הטעה את הלקוח, אין דמי ביטול בכלל!</li>
+                <section class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-700 shadow-md">
+                    <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-700 pb-2 italic text-right italic font-bold">3. דיני אגרות (סעיף 18)</h2>
+                    <p class="text-lg font-bold mb-3">החוק קובע לוח זמנים קשיח:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="border-2 border-red-200 p-4 rounded-xl bg-white">
+                            <p class="text-red-800 font-black italic underline italic">עד ה-31 במרץ:</p>
+                            <p>ניתן לשלם את האגרה השנתית המופחתת/הרגילה ללא קנסות.</p>
+                        </div>
+                        <div class="border-2 border-red-600 p-4 rounded-xl bg-red-100">
+                            <p class="text-red-900 font-black italic underline italic">ב-1 באפריל:</p>
+                            <p>המתווך הופך ל<b>מושעה אוטומטית</b>. אין צורך בשימוע או במכתב התראה.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-white rounded-lg border-2 border-red-800">
+                        <h4 class="font-black text-red-900 mb-1 italic underline italic text-right italic font-bold">פסיקה קריטית: "פס"ד מאיר נ' קנラー"</h4>
+                        <p class="text-slate-800 italic underline italic">
+                            ביהמ"ש העליון קבע: מתווך שביצע פעולה בזמן שהיה מושעה (אפילו ב-2 באפריל), <b>לא זכאי לדמי תיווך</b>. הלקוח יכול לסרב לשלם לו וביהמ"ש יגבה את הלקוח. מטרת ההשעיה היא להרתיע מתווכים מאי-תשלום.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
+                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2 italic text-right italic font-bold">4. המבנה הארגוני</h2>
+                    <ul class="space-y-4 text-slate-800 font-bold">
+                        <li>🏢 <b>רשם המתווכים:</b> משפטן הכשיר להיות שופט שלום. ממונה ע"י שר המשפטים. סמכותו: הנפקת רישיונות, ניהול הפנקס, וגביית אגרות.</li>
+                        <li>⚖️ <b>ועדת המשמעת:</b> הרכב של שלושה: יו"ר (משפטן הכשיר להיות שופט שלום), מתווך בעל ותק של 5 שנים לפחות, ונציג ציבור.</li>
+                        <li>🚨 <b>עונשין:</b> עיסוק ללא רישיון הוא עבירה פלילית שעונשה עד שנת מאסר או קנס כבד.</li>
                     </ul>
-                </section>
-
-                <section class="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <h3 class="font-bold text-red-900 mb-2 italic">איסור השפעה בלתי הוגנת:</h3>
-                    <p class="text-sm font-bold">חל איסור להפעיל לחץ נפשי, ניצול חולשה או איום על צרכן כדי שיחתום על עסקת תיווך.</p>
                 </section>
             </div>
         `,
         questions: [
             { 
-                q: "לקוח חתם על הזמנת תיווך בביתו (עסקת רוכלות). תוך כמה זמן הוא יכול לבטל?", 
-                options: ["7 ימים", "14 ימים", "24 שעות", "אי אפשר לבטל"], 
+                q: "מתווך לא שילם את האגרה בזמן. ב-5 באפריל הוא החתים לקוח על הזמנה, וב-6 באפריל הוא שילם את האגרה. ב-10 באפריל נחתמה עסקה. האם הוא זכאי לדמי תיווך?", 
+                options: ["כן, כי ביום סגירת העסקה היה לו רישיון", "לא, כי ביום החתימה על ההזמנה הוא היה מושעה", "כן, כי הוא שילם את האגרה באותה שנה", "רק אם הלקוח מסכים לשלם לו"], 
                 correct: 1, 
-                exp: "לפי חוק הגנת הצרכן, עסקת רוכלות ניתנת לביטול תוך 14 יום." 
-            },
-            { 
-                q: "מהם דמי הביטול המקסימליים שניתן לגבות מצרכן שביטל עסקת רוכלות כדין?", 
-                options: ["10%", "5% או 100 ש'ח (הנמוך מביניהם)", "אין דמי ביטול", "כל סכום שנקבע בחוזה"], 
-                correct: 1, 
-                exp: "החוק מגביל את דמי הביטול ל-5% מהעסקה או 100 ש'ח, לפי הנמוך." 
+                exp: "הזכות לדמי תיווך נולדת ברגע החתימה על ההזמנה וביצוע פעולות התיווך. אם באותו רגע הוא היה מושעה - הזכות לא קיימת." 
             }
         ]
     }
