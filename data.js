@@ -1,6 +1,6 @@
-/* VERSION: 1.0.3.7
-   CONTENT: Chapters 1-7 - FULL ACADEMIC DETAIL
-   LAST UPDATED: 2026-02-13
+/* VERSION: 3.0
+   CONTENT: Chapters 1-3 - TOTAL DEEP DIVE
+   STATUS: Full content, no compression.
 */
 
 const APP_DATA = [
@@ -10,121 +10,106 @@ const APP_DATA = [
         content: `
             <div class="space-y-6 text-right" dir="rtl">
                 <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
-                    <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">תנאי סף לקבלת רישיון (סעיף 5)</h2>
-                    <ul class="space-y-3 text-lg font-medium">
-                        <li>✅ <b>גיל:</b> 18 ומעלה ביום הגשת הבקשה.</li>
-                        <li>✅ <b>עבר פלילי:</b> ללא קלון ב-5 השנים האחרונות. <b>דגש:</b> אם ריצה מאסר, הספירה מתחילה מהשחרור.</li>
-                        <li>✅ <b>פשיטת רגל:</b> אסור, אלא אם קיבל "הפטר חלוט".</li>
-                        <li>✅ <b>אגרה:</b> תשלום עד ה-31 במרץ. ב-1 באפריל חלה השעיה אוטומטית.</li>
+                    <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2 italic">1. תנאי הסף לקבלת רישיון (סעיף 5)</h2>
+                    <ul class="space-y-4 text-slate-800 font-medium">
+                        <li><b>🔞 גיל 18:</b> המועמד חייב להיות בן 18 ביום הגשת הבקשה.</li>
+                        <li><b>🇮🇱 אזרחות/תושבות:</b> אזרח ישראל, תושב ישראל, או תושב חוץ עם היתר עבודה חוקי לפי חוק הכניסה לישראל.</li>
+                        <li><b>⚖️ עבר פלילי וקלון:</b> לא הורשע בעבירה שיש עמה קלון ב-5 השנים שקדמו לבקשה. 
+                            <br><span class="text-red-700 font-bold">חשוב לבחינה:</span> אם הוטל עונש מאסר, 5 השנים נספרות <b>מיום סיום ריצוי העונש בפועל</b>.</li>
+                        <li><b>💰 פשיטת רגל:</b> פושט רגל פסול. עליו להציג <b>צו הפטר חלוט</b> כדי לקבל רישיון.</li>
+                        <li><b>🎓 השכלה:</b> סיים 12 שנות לימוד לפחות.</li>
                     </ul>
+                </section>
+
+                <section class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-700 shadow-md">
+                    <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-700 pb-2 italic">2. אגרות והשעיה אוטומטית (סעיף 18)</h2>
+                    <p class="font-bold text-slate-800 italic underline">המועד הקובע: 31 במרץ.</p>
+                    <p class="leading-relaxed">האגרה היא עבור שנה קלנדרית. מתווך שלא שילם עד ה-31 במרץ, הופך ל<b>מושעה אוטומטית ב-1 באפריל</b>.</p>
+                    <div class="mt-4 p-4 bg-white border-2 border-red-600 rounded-xl">
+                        <p class="font-black text-red-900">הלכת "מאיר נ' קנラー":</p>
+                        <p class="text-sm italic">מתווך שביצע פעולה בזמן השעיה (אפילו ב-2 באפריל) אינו זכאי לדמי תיווך, גם אם היה הגורם היעיל ביותר.</p>
+                    </div>
                 </section>
             </div>
         `,
-        questions: [{ q: "מתי חלה השעיה אוטומטית למתווך שלא שילם?", options: ["1 בינואר", "31 במרץ", "1 באפריל", "במועד הבחינה"], correct: 2, exp: "השעיה אוטומטית חלה ב-1 באפריל." }]
+        questions: [{ q: "אדם השתחרר מהכלא ב-2023 אחרי עבירה עם קלון. מתי יוכל לקבל רישיון?", options: ["2023", "2025", "2028", "2030"], correct: 2, exp: "שחרור (2023) + 5 שנים = 2028." }]
     },
     {
         id: 1,
-        title: "פרק 2: הזמנה בכתב וזכאות לעמלה",
+        title: "פרק 2: הזמנה בכתב וסעיף 12",
         content: `
             <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
-                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2">חמשת פרטי החובה בהזמנה</h2>
-                    <p class="font-bold">1. שמות ות.ז | 2. סוג העסקה | 3. תיאור הנכס | 4. מחיר בקירוב | 5. עמלה מוסכמת.</p>
-                    <p class="mt-4 text-red-700 font-black italic underline italic">איסור סעיף 12:</p>
-                    <p>מתווך שערך זיכרון דברים או סייע בניסוח משפטי - מאבד את זכאותו לעמלה!</p>
+                <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-lg">
+                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2 italic">1. חמשת פרטי החובה (תקנות 1997)</h2>
+                    <p class="font-bold mb-4">ללא מסמך חתום הכולל את אלה, אין עמלה:</p>
+                    <ul class="list-decimal pr-8 space-y-2 font-bold text-slate-800">
+                        <li>שמות, כתובות ומספרי תעודת זהות (מתווך ולקוח).</li>
+                        <li>סוג העסקה (מכירה, קנייה, שכירות).</li>
+                        <li>תיאור הנכס (כתובת או תיאור זיהוי חד משמעי).</li>
+                        <li>מחיר העסקה המבוקש בקירוב.</li>
+                        <li>דמי התיווך המוסכמים (באחוזים או סכום קבוע). <br><span class="text-sm font-normal">דגש: מול צרכן פרטי חובה לציין אם המחיר כולל מע"מ.</span></li>
+                    </ul>
+                </section>
+
+                <section class="bg-red-100 p-6 rounded-2xl border-r-8 border-red-800">
+                    <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-800 pb-2 italic">2. איסור פעולות משפטיות (סעיף 12)</h2>
+                    <p class="font-bold">חל איסור מוחלט על מתווך לערוך או לסייע בעריכת מסמכים משפטיים.</p>
+                    <p class="mt-2 text-red-800 font-black italic underline">העונש: אובדן מוחלט של דמי התיווך.</p>
+                    <p class="text-sm">זה כולל: זיכרון דברים, נספחים לחוזה, או שינוי סעיפים בחוזה קיים.</p>
                 </section>
             </div>
         `,
-        questions: [{ q: "האם מותר למתווך לערוך זיכרון דברים?", options: ["כן", "לא", "רק אם הוא עו'ד", "רק בבלעדיות"], correct: 1, exp: "סעיף 12 אוסר על מתווך לבצע פעולה משפטית." }]
+        questions: [{ q: "מה הדין לגבי מתווך שסייע ללקוח לנסח סעיף בזיכרון דברים?", options: ["מותר בחינם", "מותר אם הלקוח ביקש", "אסור מוחלט ושולל עמלה", "מותר בבלעדיות"], correct: 2, exp: "סעיף 12 אוסר על כל סיוע משפטי." }]
     },
     {
         id: 2,
-        title: "פרק 3: בלעדיות - תנאים ותקופות",
+        title: "פרק 3: בלעדיות - תנאים ותקופות (מורחב)",
         content: `
             <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
-                    <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">תקופות הבלעדיות</h2>
-                    <p><b>דירת מגורים:</b> מקסימום 6 חודשים. לא נקבע זמן? 30 יום.</p>
-                    <p><b>נכס עסקי:</b> לפי הסכמה. לא נקבע זמן? שנה אחת.</p>
-                    <p class="font-bold mt-2">חובה: מסמך נפרד וביצוע 2 פעולות שיווק.</p>
-                </section>
-            </div>
-        `,
-        questions: [{ q: "מהי תקופת המקסימום לבלעדיות בדירת מגורים?", options: ["3 חודשים", "6 חודשים", "שנה", "חודש"], correct: 1, exp: "המקסימום למגורים הוא חצי שנה." }]
-    },
-    {
-        id: 3,
-        title: "פרק 4: חובת הגינות וגילוי",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-purple-50 p-6 rounded-2xl border-r-8 border-purple-700 shadow-md">
-                    <h2 class="text-2xl font-black text-purple-900 mb-4 border-b-2 border-purple-600 pb-2">עניין אישי (סעיף 10)</h2>
-                    <p>מתווך שיש לו עניין אישי בנכס חייב לגלות זאת ללקוח ולקבל <b>אישור בכתב</b>. ללא אישור בכתב, העסקה פסולה מבחינת זכאות לעמלה.</p>
-                </section>
-            </div>
-        `,
-        questions: [{ q: "האם גילוי עניין אישי בעל פה מספיק?", options: ["כן", "לא, חייב בכתב", "רק אם הלקוח הסכים", "רק בשכירות"], correct: 1, exp: "סעיף 10 מחייב הסכמה בכתב בלבד." }]
-    },
-    {
-        id: 4,
-        title: "פרק 5: חוק הגנת הצרכן",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-green-50 p-6 rounded-2xl border-r-8 border-green-700 shadow-md">
-                    <h2 class="text-2xl font-black text-green-900 mb-4 border-b-2 border-green-600 pb-2">ביטול עסקת רוכלות</h2>
-                    <p><b>זמן ביטול:</b> 14 יום. | <b>דמי ביטול:</b> 5% או 100 ש"ח (הנמוך ביניהם).</p>
-                    <p><b>הטעיה:</b> אסור להטעות צרכן בפרט מהותי (גודל נכס, רישום בטאבו וכו').</p>
-                </section>
-            </div>
-        `,
-        questions: [{ q: "מהם דמי הביטול המקסימליים בחוק הגנת הצרכן?", options: ["500 ש'ח", "100 ש'ח", "5%", "100 ש'ח או 5% (הנמוך)"], correct: 3, exp: "החוק מגביל ל-100 שח או 5%, הנמוך מביניהם." }]
-    },
-    {
-        id: 5,
-        title: "פרק 6: חוק המקרקעין - מושגי יסוד",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-slate-50 p-6 rounded-2xl border-r-8 border-slate-800 shadow-md">
-                    <h2 class="text-2xl font-black text-slate-900 mb-4 border-b-2 border-slate-800 pb-2 italic text-right italic font-bold italic underline italic underline italic">מהם מקרקעין?</h2>
-                    <p class="text-lg">קרקע, כל הבנוי והנטוע עליה וכל דבר אחר המחובר אליה חיבור של קבע (לא כולל מטלטלין).</p>
-                    
-                    <h3 class="font-bold text-xl mt-4 underline italic text-right italic font-bold">זכויות במקרקעין:</h3>
-                    <ul class="list-disc pr-6 space-y-2 font-medium">
-                        <li>👑 <b>בעלות:</b> הזכות הכי חזקה. להחזיק, להשתמש ולעשות כל עסקה.</li>
-                        <li>📜 <b>שכירות:</b> זכות להחזיק ולהשתמש שלא לצמיתות (מעל 5 שנים = חכירה, מעל 25 שנים = חכירה לדורות).</li>
-                        <li>🤝 <b>זיקת הנאה:</b> זכות שימוש ללא חזקה (למשל זכות מעבר בשביל).</li>
-                        <li>🛑 <b>זכות קדימה:</b> זכות של אדם לרכוש נכס לפני שהוא מוצע לאחרים.</li>
-                    </ul>
-                </section>
-            </div>
-        `,
-        questions: [{ q: "מהי חכירה לדורות?", options: ["שכירות מעל שנה", "שכירות מעל 5 שנים", "שכירות מעל 25 שנים", "בעלות מלאה"], correct: 2, exp: "חכירה לדורות היא שכירות לתקופה של מעל 25 שנה." }]
-    },
-    {
-        id: 6,
-        title: "פרק 7: רישום מקרקעין והערות אזהרה",
-        content: `
-            <div class="space-y-6 text-right" dir="rtl">
-                <section class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-700 shadow-md">
-                    <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-600 pb-2 italic text-right italic font-bold">1. רישום בטאבו (סעיף 7)</h2>
-                    <p class="text-lg">עסקה במקרקעין טעונה רישום. היא מסתיימת רק ברגע הרישום בפנקסי המקרקעין (טאבו). עד הרישום, מדובר ב<b>התחייבות לעשות עסקה</b> בלבד.</p>
+                <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-600 shadow-md">
+                    <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2 italic">1. תנאי הבלעדיות (סעיף 9ב)</h2>
+                    <p class="font-bold text-lg mb-2 text-slate-700">כדי שבלעדיות תהיה תקפה חובה שיתקיימו שני תנאים:</p>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="font-black text-blue-800 underline italic">א. מסמך נפרד:</p>
+                            <p>אישור הבלעדיות חייב להיות על גבי <b>מסמך נפרד</b> מהזמנת התיווך הרגילה.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="font-black text-blue-800 underline italic">ב. פעולות שיווק:</p>
+                            <p>המתווך חייב לבצע לפחות <b>2 פעולות שיווק</b> מתוך הרשימה בתקנות (שלט, עיתון, אינטרנט, דיוור לשכנים וכו').</p>
+                        </div>
+                    </div>
                 </section>
 
-                <section class="bg-orange-50 p-6 rounded-2xl border-r-8 border-orange-600 shadow-md">
-                    <h2 class="text-2xl font-black text-orange-900 mb-4 border-b-2 border-orange-600 pb-2 italic text-right italic font-bold">2. הערת אזהרה (סעיף 126)</h2>
-                    <p class="font-bold">המטרה: למנוע "עסקאות נוגדות" (מכירת אותה דירה לפעמיים).</p>
-                    <p>הערת אזהרה נרשמת כשיש התחייבות בכתב לעסקה. ברגע שהיא רשומה, לא ניתן לרשום עסקה אחרת שסותרת אותה ללא הסכמת בעל ההערה.</p>
+                <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
+                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2 italic">2. תקופות הבלעדיות - קריטי לבחינה!</h2>
+                    <table class="w-full border-collapse border border-amber-300 bg-white text-center">
+                        <tr class="bg-amber-200">
+                            <th class="border p-2">סוג הנכס</th>
+                            <th class="border p-2">תקופה מקסימלית</th>
+                            <th class="border p-2">אם לא סוכם תאריך</th>
+                        </tr>
+                        <tr>
+                            <td class="border p-2 font-bold">דירה למגורים</td>
+                            <td class="border p-2 text-red-700 font-bold">6 חודשים</td>
+                            <td class="border p-2 font-bold">30 יום</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2 font-bold">נכס מסחרי / מגרש</td>
+                            <td class="border p-2">ללא הגבלה (לפי הסכם)</td>
+                            <td class="border p-2 font-bold">שנה אחת</td>
+                        </tr>
+                    </table>
                 </section>
 
-                <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-600 shadow-sm italic">
-                    <h3 class="font-bold text-blue-900">3. פומביות הרישום:</h3>
-                    <p>הפנקסים בטאבו פתוחים לעיון הציבור. כל אדם יכול להוציא "נסח טאבו" תמורת אגרה ולראות מי הבעלים של כל נכס.</p>
+                <section class="p-5 bg-green-50 border-r-8 border-green-600 rounded-xl">
+                    <h3 class="font-bold text-green-900 text-xl italic underline italic">3. חזקת הגורם היעיל (סעיף 14ב):</h3>
+                    <p class="leading-relaxed font-medium">בבלעדיות, אם המתווך ביצע את פעולות השיווק הנדרשות, החוק <b>מניח</b> שהוא היה הגורם היעיל. זהו יתרון עצום, כי הנטל להוכיח שהמתווך <b>לא</b> היה יעיל עובר לכתפי הלקוח.</p>
                 </section>
             </div>
         `,
         questions: [
-            { q: "מתי מסתיימת עסקה במקרקעין?", options: ["בחתימה על החוזה", "בתשלום הכסף", "ברגע הרישום בטאבו", "בקבלת המפתח"], correct: 2, exp: "לפי סעיף 7, עסקה נגמרת ברישום. עד אז היא רק התחייבות." },
-            { q: "מה המטרה העיקרית של הערת אזהרה?", options: ["להוריד מס", "למנוע עסקאות סותרות", "לאשר את מחיר הדירה", "לקבל משכנתא"], correct: 1, exp: "הערת אזהרה נועדה להזהיר ולמנוע רישום עסקה שנוגדת את ההתחייבות הקיימת." }
+            { q: "מתווך החתים על בלעדיות לדירה ל-8 חודשים. מה תוקף הבלעדיות?", options: ["8 חודשים", "6 חודשים", "מבוטלת לגמרי", "30 יום"], correct: 1, exp: "החוק מגביל בלעדיות למגורים למקסימום של 6 חודשים." }
         ]
     }
 ];
