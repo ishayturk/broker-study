@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: right; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .btn { display: block; width: 100%; padding: 20px; margin: 10px 0; font-size: 20px; cursor: pointer; border-radius: 10px; border: none; font-weight: bold; }
+        .btn-lessons { background-color: #0056b3; color: white; text-decoration: underline; }
+        .btn-exams { background-color: #ff8c00; color: white; }
+        .card { border-right: 10px solid #0056b3; background: #f9f9f9; padding: 15px; margin-bottom: 20px; }
+        .question { background: #e7f3ff; padding: 15px; border: 2px solid #0056b3; border-radius: 10px; margin-top: 20px; }
+        .ans { display: block; margin: 10px 0; padding: 10px; background: white; border: 1px solid #ccc; cursor: pointer; width: 100%; text-align: right; }
+        .hidden { display: none; }
+        .back-btn { background: #ccc; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container">
+    </div>
+
+<script>
+    const chapters = [
+        {
+            title: "שיעור 1: רישוי, אגרות ומוסדות (החומר המורחב)",
+            content: `
+                <div class="card">
+                    <h3>1. תנאי סף לרישיון (סעיף 5)</h3>
+                    <p><b>גיל:</b> 18. | <b>אזרחות:</b> ישראלי/תושב/זר עם היתר עבודה.</p>
+                    <p><b>עבר פלילי:</b> ללא קלון ב-5 השנים האחרונות. אם יש מאסר - הספירה מהשחרור!</p>
+                </div>
+                <div class="card" style="border-color: red;">
+                    <h3>2. אגרות (סעיף 18)</h3>
+                    <p>חובה לשלם עד ה-31 במרץ. ב-1 באפריל מושעה אוטומטית. פעולה בזמן השעיה שוללת עמלה (פס"ד קנלר).</p>
+                </div>`,
+            q: "מתווך הורשע בקלון והשתחרר מהכלא ב-2025. מתי יוכל לקבל רישיון?",
+            options: ["2025", "2027", "2030", "מיד"],
+            correct: 2,
+            exp: "חובה להמתין 5 שנים מהשחרור (2025+5=2030)."
+        },
+        {
+            title: "שיעור 2: הזמנה בכתב וסעיף 12",
+            content: `
+                <div class="card" style="border-color: orange;">
+                    <h3>1. פרטי חובה בהזמנה</h3>
+                    <p>שמות ות.ז, סוג עסקה, תיאור נכס, מחיר בקירוב, עמלה (+מע"מ לצרכן).</p>
+                </div>
+                <div class="card" style="border-color: purple;">
+                    <h3>2. איסור סיוע משפטי (סעיף 12)</h3>
+                    <p>אסור לערוך זיכרון דברים או חוזה. עברת על זה? הפסדת את כל העמלה!</p>
+                </div>`,
+            q: "מתווך מילא 'טופס מוכן' של זיכרון דברים עבור הלקוח. מה התוצאה?",
+            options: ["מותר בחינם", "מותר בבלעדיות", "איבוד זכאות לעמלה", "מותר אם הלקוח חתם"],
+            correct: 2,
+            exp: "סעיף 12 אוסר על כל סיוע משפטי, כולל מילוי טפסים."
+        },
+        {
+            title: "שיעור 3: בלעדיות - תנאים ותקופות",
+            content: `
+                <div class="card" style="border-color: green;">
+                    <h3>1. תנאי בלעדיות</h3>
+                    <p>מסמך נפרד + 2 פעולות שיווק.</p>
+                </div>
+                <div class="card" style="border-color: pink;">
+                    <h3>2. תקופות מקסימום</h3>
+                    <p>מגורים: 6 חודשים (ללא זמן: 30 יום). | עסקי: אין הגבלה (ללא זמן: שנה).</p>
+                </div>`,
+            q: "מה תקופת הבלעדיות המקסימלית לדירת מגורים?",
+            options: ["3 חודשים", "6 חודשים", "שנה", "חודש"],
+            correct: 1,
+            exp: "דירת מגורים מוגבלת בחוק ל-6 חודשי בלעדיות."
+        }
+    ];
+
+    function showMenu() {
+        document.getElementById('app').innerHTML = `
+            <h1 style="text-align:center">הכנה למבחן המתווכים</h1>
+            <button class="btn btn-lessons" onclick="showLessonsList()">📚 שיעורים (Lessons)</button>
+            <button class="btn btn-exams" onclick="alert('בפיתוח')">📝 מבחנים (Exams)</button>
+        `;
+    }
+
+    function showLessonsList() {
+        let html = '<button class="back-btn" onclick="showMenu()">⬅ חזור</button><h2>בחר שיעור (3 פרקים)</h2>';
+        chapters.forEach((ch, i) => {
+            html += `<button class="btn" style="border:1px solid #ccc; text-align:right" onclick="openLesson(${i})">${ch.title} ➔</button>`;
+        });
+        document.getElementById('app').innerHTML = html;
+    }
+
+    function openLesson(i) {
+        const ch = chapters[i];
+        document.getElementById('app').innerHTML = `
+            <button class="back-btn" onclick="showLessonsList()">⬅ חזור לרשימה</button>
+            <h2>${ch.title}</h2>
+            ${ch.content}
+            <div class="question">
+                <p><b>שאלת תרגול:</b> ${ch.q}</p>
+                ${ch.options.map((opt, idx) => `<button class="ans" onclick="check(${i}, ${idx})">${opt}</button>`).join('')}
+                <p id="res" style="font-weight:bold; margin-top:10px;"></p>
+            </div>
+            ${i < chapters.length - 1 ? `<button class="btn btn-lessons" onclick="openLesson(${i+1})">לשיעור הבא ➔</button>` : ''}
+        `;
+    }
+
+    function check(chIdx, ansIdx) {
+        const msg = document.getElementById('res');
+        if (ansIdx === chapters[chIdx].correct) {
+            msg.innerHTML = "✅ נכון! " + chapters[chIdx].exp;
+            msg.style.color = "green";
+        } else {
+            msg.innerHTML = "❌ טעות. " + chapters[chIdx].exp;
+            msg.style.color = "red";
+        }
+    }
+
+    showMenu();
+</script>
+
+</body>
+</html>
