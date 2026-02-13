@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>מתווך-PRO</title>
+    <title>מתווך-PRO | לומדים לרישיון</title>
+    
     <link rel="icon" href="https://fonts.gstatic.com/s/i/short-term/release/googlestylesheet/notoemoji/15.1/1f3e0/512.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; margin: 0; height: 100vh; overflow: hidden; }
@@ -16,35 +18,48 @@
         .hidden { display: none !important; }
         .content-body { line-height: 1.8; color: #334155; }
         .content-body h2 { color: #1e40af; font-weight: 800; font-size: 1.5rem; margin-bottom: 1rem; border-right: 4px solid #2563eb; padding-right: 12px; }
+        .logo-font { letter-spacing: -1px; }
     </style>
 </head>
 <body>
     <div class="app-container shadow-2xl">
-        <header class="p-4 border-b bg-white text-center"><h1 class="text-xl font-black text-blue-600">מתווך-PRO</h1></header>
+        <header class="p-4 border-b bg-white flex justify-between items-center px-6">
+            <div class="flex items-center gap-2">
+                <img src="https://fonts.gstatic.com/s/i/short-term/release/googlestylesheet/notoemoji/15.1/1f3e0/512.png" class="w-6 h-6" alt="logo">
+                <h1 class="text-xl font-black text-blue-600 logo-font italic">מתווך-PRO</h1>
+            </div>
+            <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-bold">V 1.0.2</span>
+        </header>
+
         <main id="main-content">
             <div id="view-home">
-                <div class="bg-blue-600 p-8 rounded-3xl text-white mb-6 text-right">
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-3xl text-white mb-6 text-right shadow-lg">
                     <h2 class="text-2xl font-black mb-1 text-white border-none p-0">הכנה לבחינה 2026</h2>
-                    <p class="opacity-90">לומדים חכם, עוברים בטוח.</p>
+                    <p class="opacity-90">הדרך המהירה לרישיון התיווך שלך.</p>
                 </div>
                 <div class="space-y-4">
-                    <button onclick="router('lessons')" class="w-full bg-white border-2 border-blue-500 p-6 rounded-2xl flex items-center gap-4 text-right">
-                        <span class="text-3xl">📚</span>
-                        <div><div class="font-bold text-lg">שיעורי לימוד</div><div class="text-xs text-blue-600 uppercase font-bold">Full Course</div></div>
+                    <button onclick="router('lessons')" class="w-full bg-white border-2 border-blue-500 p-6 rounded-2xl flex items-center gap-4 text-right hover:bg-blue-50 transition-colors">
+                        <span class="text-4xl">📚</span>
+                        <div><div class="font-bold text-lg text-slate-800">שיעורי לימוד</div><div class="text-xs text-blue-600 uppercase font-bold tracking-widest">סילבוס מלא</div></div>
                     </button>
-                    <button class="w-full bg-slate-50 border border-slate-200 p-6 rounded-2xl flex items-center gap-4 text-right opacity-50 cursor-not-allowed text-slate-400">
-                        <span class="text-3xl">📝</span>
-                        <div><div class="font-bold text-lg">סימולציית מבחן</div><div class="text-xs uppercase font-bold text-slate-400">Locked</div></div>
+                    <button class="w-full bg-slate-50 border border-slate-200 p-6 rounded-2xl flex items-center gap-4 text-right opacity-50 cursor-not-allowed">
+                        <span class="text-4xl grayscale">📝</span>
+                        <div><div class="font-bold text-lg text-slate-400">מבחן סימולציה</div><div class="text-xs uppercase font-bold text-slate-400 italic italic">בקרוב...</div></div>
                     </button>
                 </div>
             </div>
+
             <div id="view-lessons" class="hidden space-y-4"></div>
+
             <div id="view-study" class="hidden">
-                <button onclick="router('lessons')" class="text-blue-600 font-bold mb-4">← חזרה</button>
+                <button onclick="router('lessons')" class="text-blue-600 font-bold mb-4 flex items-center gap-2">
+                    <span>←</span> חזרה לסילבוס
+                </button>
                 <div id="lesson-text" class="content-body bg-white border rounded-2xl p-6 shadow-sm"></div>
-                <div id="lesson-quiz" class="mt-8"></div>
+                <div id="lesson-quiz" class="mt-8 mb-10"></div>
             </div>
         </main>
+
         <nav class="nav-bar">
             <div onclick="router('home')" id="n-home" class="nav-item active"><span>🏠</span><span>ראשי</span></div>
             <div onclick="router('lessons')" id="n-lessons" class="nav-item"><span>📖</span><span>לימוד</span></div>
