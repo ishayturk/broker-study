@@ -2,64 +2,149 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>מתווך-PRO</title>
-    <link rel="icon" href="https://fonts.gstatic.com/s/i/short-term/release/googlestylesheet/notoemoji/15.1/1f3e0/512.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לימוד מתווכים 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; margin: 0; height: 100vh; overflow: hidden; }
-        .app-container { max-width: 500px; margin: 0 auto; background: white; height: 100vh; display: flex; flex-direction: column; position: relative; }
-        main { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 90px; }
-        .nav-bar { position: absolute; bottom: 0; width: 100%; height: 70px; background: white; border-top: 1px solid #e2e8f0; display: flex; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; font-weight: bold; color: #64748b; }
-        .nav-item.active { color: #2563eb; border-top: 3px solid #2563eb; }
-        .hidden { display: none !important; }
-        .content-body h2 { color: #1e40af; font-weight: 800; font-size: 1.5rem; margin-bottom: 1rem; border-right: 4px solid #2563eb; padding-right: 12px; }
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap');
+        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="app-container shadow-2xl">
-        <header class="p-4 border-b bg-white flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img src="https://fonts.gstatic.com/s/i/short-term/release/googlestylesheet/notoemoji/15.1/1f3e0/512.png" class="w-6 h-6">
-                <h1 class="text-xl font-black text-blue-600 italic">מתווך-PRO</h1>
-            </div>
-            <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-bold">V 1.0.3</span>
-        </header>
 
-        <main id="main-content">
-            <div id="view-home" class="view-section">
-                <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-3xl text-white mb-6 text-right shadow-lg">
-                    <h2 class="text-2xl font-black mb-1 border-none p-0 text-white italic">הכנה לבחינה 2026</h2>
-                    <p class="opacity-90">הדרך הבטוחה לרישיון שלך.</p>
-                </div>
-                <div class="space-y-4">
-                    <button onclick="router('lessons')" class="w-full bg-white border-2 border-blue-500 p-6 rounded-2xl flex items-center gap-4 text-right hover:bg-blue-50">
-                        <span class="text-4xl">📚</span>
-                        <div>
-                            <div class="font-bold text-lg text-slate-800">שיעורי לימוד</div>
-                            <div class="text-xs text-blue-600 uppercase font-bold">סילבוס מלא</div>
-                        </div>
+    <div id="main-container" class="container mx-auto px-4 py-8">
+        </div>
+
+    <script>
+        /* נתונים עמוקים - גרסה 3.0 */
+        const APP_DATA = [
+            {
+                id: 0,
+                title: "פרק 1: רישוי, אגרות ומוסדות",
+                content: `
+                    <div class="space-y-6 text-right">
+                        <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
+                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">1. תנאי סף לקבלת רישיון (סעיף 5)</h2>
+                            <ul class="space-y-4 text-slate-800 font-bold">
+                                <li>📍 גיל 18 לפחות ביום הגשת הבקשה.</li>
+                                <li>📍 אזרח ישראל / תושב ישראל / תושב חוץ עם היתר עבודה.</li>
+                                <li>📍 ללא הרשעה בעבירה שיש עמה קלון ב-5 השנים האחרונות (הספירה מהשחרור מהמאסר).</li>
+                                <li>📍 לא פושט רגל (אלא אם יש לו הפטר חלוט).</li>
+                                <li>📍 12 שנות לימוד ומעבר בחינה בציון 60.</li>
+                            </ul>
+                        </section>
+                        <section class="bg-red-50 p-6 rounded-2xl border-r-8 border-red-700 shadow-md">
+                            <h2 class="text-2xl font-black text-red-900 mb-4 border-b-2 border-red-700 pb-2">2. אגרות והשעיה (סעיף 18)</h2>
+                            <p class="font-black text-red-800 underline">המועד הקובע: 31 במרץ.</p>
+                            <p>מתווך שלא שילם עד תאריך זה - מושעה אוטומטית ב-1 באפריל. פעולה בזמן השעיה שוללת זכאות לדמי תיווך!</p>
+                        </section>
+                    </div>
+                `
+            },
+            {
+                id: 1,
+                title: "פרק 2: הזמנה בכתב וסעיף 12",
+                content: `
+                    <div class="space-y-6 text-right">
+                        <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
+                            <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2">1. חמשת פרטי החובה</h2>
+                            <p class="font-bold underline mb-2 italic">חובה להופיע בהזמנה:</p>
+                            <ol class="list-decimal pr-8 font-bold space-y-2">
+                                <li>שמות ות.ז (מתווך ולקוח).</li>
+                                <li>סוג עסקה (מכירה/שכירות).</li>
+                                <li>תיאור הנכס (כתובת).</li>
+                                <li>מחיר בקירוב.</li>
+                                <li>דמי תיווך מוסכמים (+מע"מ לצרכן).</li>
+                            </ol>
+                        </section>
+                        <section class="bg-red-100 p-6 rounded-2xl border-r-8 border-red-800 shadow-md">
+                            <h2 class="text-xl font-black text-red-900 mb-2 underline">סעיף 12 - איסור סיוע משפטי:</h2>
+                            <p class="font-bold">אסור למתווך לערוך זיכרון דברים או חוזה. עבר על זה? הפסיד את כל העמלה!</p>
+                        </section>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "פרק 3: בלעדיות - התנאים והתקופות",
+                content: `
+                    <div class="space-y-6 text-right">
+                        <section class="bg-blue-50 p-6 rounded-2xl border-r-8 border-blue-700 shadow-md">
+                            <h2 class="text-2xl font-black text-blue-900 mb-4 border-b-2 border-blue-600 pb-2">1. תנאי הבלעדיות</h2>
+                            <p class="font-bold text-lg">חובה מצטברת:</p>
+                            <p>1. חתימה על מסמך נפרד מההזמנה.</p>
+                            <p>2. ביצוע 2 פעולות שיווק (שלט, פרסום וכו').</p>
+                        </section>
+                        <section class="bg-amber-50 p-6 rounded-2xl border-r-8 border-amber-600 shadow-md">
+                            <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2">2. תקופות זמן מקסימליות</h2>
+                            <p class="font-bold text-red-700">דירת מגורים: עד 6 חודשים. (ללא תאריך: 30 יום).</p>
+                            <p class="font-bold">נכס עסקי: אין הגבלה. (ללא תאריך: שנה).</p>
+                        </section>
+                    </div>
+                `
+            }
+        ];
+
+        /* לוגיקה פנימית */
+        function renderMainMenu() {
+            document.getElementById('main-container').innerHTML = `
+                <div class="flex flex-col items-center justify-center min-h-[70vh] space-y-8 animate-fade-in">
+                    <h1 class="text-4xl font-black text-blue-900 mb-4">הכנה למבחן המתווכים</h1>
+                    
+                    <button onclick="showLessonsList()" class="w-72 p-6 bg-blue-600 text-white rounded-2xl shadow-xl hover:bg-blue-700 transform hover:scale-105 transition-all text-2xl font-bold italic underline">
+                        📚 שיעורים (Lessons)
+                    </button>
+
+                    <button onclick="alert('המבחנים יתווספו בגרסה 4.0')" class="w-72 p-6 bg-orange-500 text-white rounded-2xl shadow-xl hover:bg-orange-600 transform hover:scale-105 transition-all text-2xl font-bold">
+                        📝 מבחנים (Exams)
                     </button>
                 </div>
-            </div>
+            `;
+        }
 
-            <div id="view-lessons" class="view-section hidden space-y-4"></div>
+        function showLessonsList() {
+            const list = APP_DATA.map(lesson => `
+                <button onclick="loadLesson(${lesson.id})" class="w-full p-6 mb-4 bg-white border-2 border-blue-100 rounded-2xl text-right hover:border-blue-600 shadow-md flex justify-between items-center group">
+                    <span class="text-xl font-bold text-slate-800 group-hover:text-blue-600">${lesson.title}</span>
+                    <span class="text-blue-500 text-2xl">➔</span>
+                </button>
+            `).join('');
 
-            <div id="view-study" class="view-section hidden">
-                <button onclick="router('lessons')" class="text-blue-600 font-bold mb-4 flex items-center gap-2">← חזרה</button>
-                <div id="lesson-text" class="content-body bg-white border rounded-2xl p-6 shadow-sm mb-6"></div>
-                <div id="lesson-quiz"></div>
-            </div>
-        </main>
+            document.getElementById('main-container').innerHTML = `
+                <div class="max-w-2xl mx-auto py-8 animate-fade-in">
+                    <div class="flex justify-between items-center mb-8">
+                        <button onclick="renderMainMenu()" class="text-blue-600 font-bold">⬅ חזור לתפריט</button>
+                        <h2 class="text-3xl font-black">רשימת שיעורים</h2>
+                    </div>
+                    ${list}
+                </div>
+            `;
+        }
 
-        <nav class="nav-bar">
-            <div onclick="router('home')" id="n-home" class="nav-item active">🏠<br>ראשי</div>
-            <div onclick="router('lessons')" id="n-lessons" class="nav-item">📖<br>לימוד</div>
-        </nav>
-    </div>
+        function loadLesson(id) {
+            const lesson = APP_DATA.find(l => l.id === id);
+            document.getElementById('main-container').innerHTML = `
+                <div class="max-w-3xl mx-auto py-4 animate-fade-in">
+                    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4 z-10 border-b">
+                        <button onclick="showLessonsList()" class="text-blue-600 font-bold italic underline">⬅ חזור לרשימה</button>
+                        <h2 class="text-xl font-black text-blue-900">${lesson.title}</h2>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 mb-8">
+                        ${lesson.content}
+                    </div>
+                    <div class="flex gap-4">
+                        ${id < APP_DATA.length - 1 ? `<button onclick="loadLesson(${id + 1})" class="flex-1 bg-green-600 text-white p-5 rounded-2xl font-black text-xl shadow-lg">פרק הבא ➔</button>` : ''}
+                        <button onclick="showLessonsList()" class="flex-1 bg-slate-500 text-white p-5 rounded-2xl font-black text-xl">סיום</button>
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0,0);
+        }
 
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+        // הפעלה ראשונית
+        renderMainMenu();
+    </script>
 </body>
 </html>
