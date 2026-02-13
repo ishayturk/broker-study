@@ -2,110 +2,156 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>מערכת הכנה למבחן המתווכים - גרסת העומק</title>
+    <title>קורס מתווכים מקצועי - גרסת עומק 6.0</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; margin: 0; padding: 20px; line-height: 1.6; color: #333; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .header { text-align: center; border-bottom: 4px solid #1e40af; padding-bottom: 20px; margin-bottom: 30px; }
-        .nav-menu { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; border: 2px solid #e2e8f0; padding: 20px; border-radius: 12px; background: #f8fafc; }
+        :root { --primary: #1e3a8a; --secondary: #f59e0b; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #1f2937; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
         
-        /* כפתור הלימוד מעל המבחן כפי שביקשת */
-        .btn-main { width: 100%; padding: 25px; font-size: 24px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; transition: 0.3s; }
-        .btn-learning { background: #1e40af; color: white; text-decoration: underline; }
-        .btn-exams { background: #f59e0b; color: white; margin-top: 10px; }
+        /* מבנה כפתורים לפי בקשתך */
+        .main-nav { display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px; background: #f1f5f9; padding: 25px; border-radius: 15px; }
+        .btn-logic { width: 100%; padding: 25px; font-size: 26px; font-weight: 900; border-radius: 12px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-learning { background: var(--primary); color: white; text-decoration: underline; box-shadow: 0 4px 0 #172554; }
+        .btn-exams { background: var(--secondary); color: white; box-shadow: 0 4px 0 #b45309; }
         
-        .lesson-card { border-right: 15px solid #1e40af; background: #ffffff; padding: 25px; margin-bottom: 50px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .law-title { color: #1e40af; font-size: 24px; font-weight: 900; border-bottom: 2px solid #e2e8f0; margin-bottom: 15px; }
-        .important-note { background: #fff1f2; border: 1px solid #fecaca; padding: 15px; border-radius: 8px; color: #991b1b; font-weight: bold; margin: 15px 0; }
+        .lesson-section { margin-bottom: 60px; border-bottom: 2px solid #e5e7eb; padding-bottom: 40px; }
+        .law-box { border-right: 15px solid var(--primary); background: #fdfdfd; padding: 30px; margin: 20px 0; border-radius: 0 10px 10px 0; border: 1px solid #e5e7eb; border-right-width: 15px; }
+        h2 { color: var(--primary); font-size: 32px; margin-bottom: 20px; text-decoration: underline; }
+        h3 { color: #1e40af; font-size: 24px; border-bottom: 2px solid #dbeafe; display: inline-block; }
         
-        .quiz-section { background: #fefce8; border: 2px dashed #ca8a04; padding: 20px; border-radius: 12px; margin-top: 25px; }
-        details summary { font-weight: bold; cursor: pointer; color: #1e40af; padding: 10px; background: #e0e7ff; border-radius: 5px; margin-top: 10px; }
-        .highlight { background: #fde047; padding: 2px 5px; font-weight: bold; }
+        .deep-dive { background: #eff6ff; padding: 20px; border-radius: 10px; border: 1px solid #bfdbfe; margin-top: 15px; }
+        .verdict { background: #fff7ed; border-right: 5px solid #f97316; padding: 15px; margin: 15px 0; font-style: italic; }
+        
+        .quiz { background: #fefce8; border: 2px dashed #ca8a04; padding: 30px; border-radius: 15px; margin-top: 30px; }
+        .quiz h4 { margin-top: 0; font-size: 22px; color: #854d0e; }
+        details { background: white; padding: 15px; border-radius: 8px; border: 1px solid #fde047; margin-top: 15px; cursor: pointer; }
+        details[open] { border: 2px solid #ca8a04; }
+        
+        .badge { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 99px; font-size: 14px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>הכנה למבחן המתווכים - 2026</h1>
-        <p>גרסת לימוד מעמיקה - 3 פרקים ראשונים</p>
+    <div class="main-nav">
+        <button class="btn-logic btn-learning" onclick="document.getElementById('lessons-start').scrollIntoView({behavior:'smooth'})">📚 כניסה לשיעורים המפורטים</button>
+        <button class="btn-logic btn-exams" onclick="alert('המבחנים יפתחו לאחר מעבר על כל 3 הפרקים המורחבים')">📝 בנק מבחני רשם המתווכים</button>
     </div>
 
-    <div class="nav-menu">
-        <button class="btn-main btn-learning" onclick="document.getElementById('lessons').scrollIntoView({behavior:'smooth'})">📚 שיעורים (Lessons)</button>
-        <button class="btn-main btn-exams" onclick="alert('המבחן יפתח לאחר שתסיים את קריאת הפרקים')">📝 מבחנים (Exams)</button>
-    </div>
-
-    <div id="lessons">
+    <div id="lessons-start">
         
-        <div class="lesson-card">
-            <div class="law-title">שיעור 1: רישוי ואגרות (העומק המלא)</div>
-            <h3>1. תנאי סף לקבלת רישיון (סעיף 5)</h3>
-            <p>במבחן שואלים על הפרטים הקטנים. שים לב:</p>
-            <ul>
-                <li><b>גיל:</b> מעל 18. התאריך הקובע הוא <b>יום הגשת הבקשה</b> לרישיון.</li>
-                <li><b>אזרחות:</b> ישראלי או תושב ישראל. <span class="highlight">חידוש:</span> גם תושב חוץ יכול, בתנאי שיש לו היתר עבודה חוקי בישראל.</li>
-                <li><b>עבר פלילי:</b> לא הורשע בעבירה שיש עמה <span class="highlight">קלון</span> ב-5 השנים האחרונות.</li>
-            </ul>
-            <div class="important-note">
-                דגש למבחן: אם המועמד נידון למאסר בפועל, ספירת 5 השנים מתחילה <b>מיום השחרור מהכלא</b>, ולא מיום מתן גזר הדין.
-            </div>
-            <h3>2. אגרות (סעיף 18)</h3>
-            <p>האגרה היא שנתית. המועד האחרון לתשלום: <b>31 במרץ</b>.</p>
-            <p><b>פס"ד מאיר נ' קנלר:</b> מתווך שלא שילם בזמן נחשב מושעה. אם הוא ביצע פעולת תיווך ב-1 באפריל בלי לשלם, הוא <b>מאבד את הזכות לדמי תיווך</b>, גם אם העסקה נחתמה והוא היה הגורם היעיל.</p>
+        <div class="lesson-section">
+            <h2>פרק 1: חוק המתווכים - רישוי, מוסדות ואגרות</h2>
             
-            <div class="quiz-section">
-                <h4>❓ שאלת תרגול:</h4>
-                <p>מתווך הורשע בקלון וסיים לרצות 3 שנות מאסר ב-1.1.2024. מתי יוכל לקבל רישיון?</p>
+            <div class="law-box">
+                <h3>1. תנאי הסף (סעיף 5) - עומק מקצועי</h3>
+                <p>כדי לקבל רישיון, יש לעמוד בשישה תנאים מצטברים. שימו לב לניואנסים:</p>
+                <ul>
+                    <li><b>גיל:</b> 18 לפחות. הקביעה היא לפי תאריך הלידה ביום הגשת הבקשה לרשם.</li>
+                    <li><b>תושבות:</b> אזרח או תושב ישראל. <b>החריג:</b> תושב חוץ עם היתר עבודה חוקי (סעיף זה נועד לאפשר למתווכים בינלאומיים לפעול בישראל).</li>
+                    <li><b>עבר פלילי (הסעיף הקשה):</b> לא הורשע בעבירה שיש עמה <b>קלון</b> ב-5 השנים שקדמו לבקשה.</li>
+                </ul>
+                <div class="deep-dive">
+                    <b>מהו קלון?</b> פגם מוסרי המלווה את העבירה. רשם המתווכים הוא המחליט אם בעבירה יש קלון (בייעוץ עם היועמ"ש).
+                    <br><b>כלל הזהב:</b> אם המועמד ריצה מאסר, ספירת 5 השנים מתחילה <u>מיום השחרור</u>. אם קיבל מאסר על תנאי או קנס - הספירה מיום גזר הדין.
+                </div>
+            </div>
+
+            <div class="law-box" style="border-right-color: #dc2626;">
+                <h3>2. אגרות והשעיה (סעיף 18 והתקנות)</h3>
+                <p>האגרה היא עבור שנה קלנדרית. <b>המועד האחרון: 31 במרץ.</b></p>
+                <div class="verdict">
+                    <b>פס"ד מאיר נ' קנלר:</b> ביה"מ העליון קבע כי חוק המתווכים הוא חוק "קוגנטי" (צרכני). מתווך שפעל ב-1 באפריל ללא תשלום אגרה נחשב כמי שפעל ללא רישיון. <b>התוצאה:</b> שלילת דמי תיווך לחלוטין, גם אם נחתם חוזה והמתווך היה הגורם היעיל ביותר בעולם.
+                </div>
+            </div>
+
+            <div class="quiz">
+                <h4>❓ שאלת בחינה:</h4>
+                <p>מתווך הורשע בעבירה שיש עמה קלון ב-2020. הוא נידון ל-2 שנות מאסר בפועל והשתחרר ב-1.1.2022. מתי יוכל להגיש בקשה לרישיון?</p>
                 <details>
-                    <summary>לחץ להצגת התשובה והסבר</summary>
-                    <p><b>תשובה:</b> ב-1.1.2029. לפי סעיף 5, חובה להמתין 5 שנים מיום השחרור מהכלא (2024 + 5).</p>
+                    <summary>הצג תשובה והסבר משפטי</summary>
+                    <p><b>תשובה:</b> 1.1.2027.</p>
+                    <p><b>הסבר:</b> סעיף 5(א)(4) קובע תקופת צינון של 5 שנים. מאחר והוא ריצה מאסר, הספירה מתחילה רק ביום השחרור (2022 + 5 = 2027).</p>
                 </details>
             </div>
         </div>
 
-        <div class="lesson-card" style="border-right-color: #f59e0b;">
-            <div class="law-title">שיעור 2: הזמנה בכתב ואיסור משפטי</div>
-            <h3>1. חמשת פרטי החובה בהזמנה (סעיף 9)</h3>
-            <p>ללא טופס חתום עם הפרטים הבאים, אין עמלה:</p>
-            <ol>
-                <li>שמות, כתובות ותעודות זהות של המתווך והלקוח.</li>
-                <li>סוג העסקה (מכירה או שכירות).</li>
-                <li>תיאור הנכס (כתובת מדויקת).</li>
-                <li>המחיר המבוקש בקירוב.</li>
-                <li>העמלה המוסכמת (בצרכן פרטי חובה לציין אם כולל מע"מ).</li>
-            </ol>
-            <div class="important-note">
-                סעיף 12 (קריטי): חל איסור מוחלט על מתווך לערוך "זיכרון דברים" או לסייע בעריכת מסמכים משפטיים. עשית זאת? הפסדת את כל העמלה!
+        <div class="lesson-section">
+            <h2>פרק 2: הזמנה בכתב וסעיף 12 (האיסור המשפטי)</h2>
+            <div class="law-box" style="border-right-color: #f59e0b;">
+                <h3>1. דרישת הכתב (תקנות המתווכים פרטי הזמנה)</h3>
+                <p>ללא הזמנה חתומה הכוללת 5 פרטי חובה, אין זכות לעמלה. הפרטים הם:</p>
+                <ol>
+                    <li><b>זיהוי:</b> שמות, ת.ז וכתובות (של המתווך ושל הלקוח).</li>
+                    <li><b>סוג העסקה:</b> שכירות/מכירה.</li>
+                    <li><b>תיאור הנכס:</b> זיהוי חד משמעי.</li>
+                    <li><b>מחיר:</b> המחיר המבוקש בקירוב.</li>
+                    <li><b>דמי התיווך:</b> סכום מוסכם או אחוז. בצרכן פרטי - המחיר חייב לכלול מע"מ (חוק הגנת הצרכן).</li>
+                </ol>
             </div>
 
-            <div class="quiz-section">
-                <h4>❓ שאלת תרגול:</h4>
-                <p>מתווך החתים לקוח על הזמנה בכתב, אך לא ציין את מספר תעודת הזהות של הלקוח. האם הוא זכאי לדמי תיווך?</p>
+            <div class="law-box" style="border-right-color: #7c3aed;">
+                <h3>2. סעיף 12 - איסור פעולות משפטיות</h3>
+                <p>מתווך לא יסייע בעריכת מסמכים משפטיים. <b>זהו איסור מוחלט.</b></p>
+                <div class="deep-dive">
+                    <b>מה נחשב סיוע?</b> מילוי "טפסים מוכנים" של זיכרון דברים, ניסוח סעיפי פיצויים, או מתן ייעוץ על תוקפו המשפטי של חוזה.
+                    <br><b>הסנקציה:</b> איבוד דמי התיווך + עבירה משמעתית.
+                </div>
+            </div>
+
+            <div class="quiz">
+                <h4>❓ שאלת בחינה:</h4>
+                <p>מתווך הביא להסכמה מלאה בין צדדים. הקונה ביקש מהמתווך לרשום בכתב רק את "הבנות המחיר" על דף כדי שלא ישכחו. המתווך רשם והצדדים חתמו. מה הדין?</p>
                 <details>
-                    <summary>לחץ להצגת התשובה והסבר</summary>
-                    <p><b>תשובה:</b> ייתכן שכן. בתי המשפט קבעו כי במידה וניתן לזהות את הלקוח בדרכים אחרות והמתווך היה "הגורם היעיל", חוסר בפרט טכני (כמו ת.ז) לא ימנע עמלה. (אבל חוסר בכתב או חתימה - כן ימנע!).</p>
+                    <summary>הצג תשובה והסבר משפטי</summary>
+                    <p><b>תשובה:</b> המתווך איבד את זכאותו לדמי תיווך.</p>
+                    <p><b>הסבר:</b> רישום הבנות המהווה "מסמך משפטי" (זיכרון דברים) על ידי מתווך הוא הפרה של סעיף 12. בתי המשפט מחמירים מאוד בנושא זה כדי למנוע ממתווכים לעסוק בעריכת דין.</p>
                 </details>
             </div>
         </div>
 
-        <div class="lesson-card" style="border-right-color: #10b981;">
-            <div class="law-title">שיעור 3: בלעדיות (העומק המלא)</div>
-            <p>בלעדיות דורשת 2 תנאים מצטברים:</p>
-            <ul>
-                <li>חתימה על <b>מסמך נפרד</b> (בנוסף להזמנה הרגילה).</li>
-                <li>ביצוע 2 <b>פעולות שיווק</b> מתוך הרשימה בתקנות.</li>
-            </ul>
-            <h3>תקופות זמן מקסימליות (חובה לשנן):</h3>
-            <p><b>דירת מגורים:</b> עד 6 חודשים. אם לא צוין תאריך סיום - 30 יום.</p>
-            <p><b>נכס עסקי/מגרש:</b> אין הגבלה בחוק. אם לא צוין תאריך סיום - שנה אחת.</p>
-            
-            <div class="quiz-section">
-                <h4>❓ שאלת תרגול:</h4>
-                <p>מתווך קיבל בלעדיות על דירת מגורים ל-8 חודשים. מה התוקף החוקי של הבלעדיות?</p>
+        <div class="lesson-section">
+            <h2>פרק 3: בלעדיות - תקנות וחזקת הגורם היעיל</h2>
+            <div class="law-box" style="border-right-color: #10b981;">
+                <h3>1. תנאים לתוקף הבלעדיות (סעיף 9ב)</h3>
+                <p>בלעדיות היא זכות עוצמתית, ולכן החוק מציב תנאים קשוחים:</p>
+                <ul>
+                    <li><b>מסמך נפרד:</b> אישור הבלעדיות חייב להיות על דף נפרד מחתימת הזמנת התיווך.</li>
+                    <li><b>פעולות שיווק:</b> המתווך חייב לבצע לפחות 2 פעולות שיווק (שלט, עיתון, אתר אינטרנט, דיוור).</li>
+                </ul>
+            </div>
+
+            <div class="law-box">
+                <h3>2. תקופות זמן מקסימליות (קוגנטי)</h3>
+                <table>
+                    <tr style="background:#e2e8f0">
+                        <th style="padding:10px">סוג הנכס</th>
+                        <th>תקופה מקסימלית</th>
+                        <th>אם לא נקבע תאריך סיום</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px"><b>דירת מגורים</b></td>
+                        <td>6 חודשים</td>
+                        <td>30 יום</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px"><b>נכס עסקי / מגרש</b></td>
+                        <td>ללא הגבלה (לפי הסכם)</td>
+                        <td>שנה אחת</td>
+                    </tr>
+                </table>
+                <div class="verdict">
+                    <b>חזקת הגורם היעיל:</b> בבלעדיות, אם המתווך ביצע את פעולות השיווק, "חזקה" עליו שהיה הגורם היעיל. הלקוח הוא זה שצריך להוכיח שהמתווך <b>לא</b> היה יעיל כדי להתחמק מתשלום.
+                </div>
+            </div>
+
+            <div class="quiz">
+                <h4>❓ שאלת בחינה:</h4>
+                <p>מתווך קיבל בלעדיות על חנות (נכס עסקי) למשך שנתיים. האם זה חוקי?</p>
                 <details>
-                    <summary>לחץ להצגת התשובה והסבר</summary>
-                    <p><b>תשובה:</b> הבלעדיות תקוצר אוטומטית ל-6 חודשים. החוק קובע שתקופת הבלעדיות למגורים לא תעלה על 6 חודשים.</p>
+                    <summary>הצג תשובה והסבר משפטי</summary>
+                    <p><b>תשובה:</b> כן.</p>
+                    <p><b>הסבר:</b> ההגבלה של 6 חודשים בחוק המתווכים חלה אך ורק על "דירה" (המוגדרת כיחידה המשמשת למגורים). בנכסים עסקיים, הצדדים רשאים להסכים על כל תקופה.</p>
                 </details>
             </div>
         </div>
