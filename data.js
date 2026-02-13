@@ -1,5 +1,5 @@
 /* VERSION: 1.0.3.3
-   CONTENT: Chapters 1, 2 & 3 - FULL DETAIL
+   CONTENT: Chapters 1, 2 & 3 - FULL DETAIL + EXAM TRAPS
    LAST UPDATED: 2026-02-13
 */
 
@@ -9,91 +9,97 @@ const APP_DATA = [
         title: "פרק 1: רישוי, אגרות ומוסדות",
         content: `
             <div class="space-y-6 text-right" dir="rtl">
-                <section>
-                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">1. מבוא וחוק המתווכים</h2>
-                    <p class="text-lg leading-relaxed font-medium text-slate-700">חוק המתווכים במקרקעין (1996) נועד להסדיר את מקצוע התיווך. הכלל הבסיסי: אין לעסוק בתיווך ללא רישיון. מי שעובר על החוק מבצע עבירה פלילית ולא יהיה זכאי לדמי תיווך בשום מקרה.</p>
-                </section>
                 <section class="bg-blue-50 p-5 rounded-xl border-r-8 border-blue-600 shadow-md">
-                    <h3 class="font-bold text-blue-900 mb-4 text-xl underline italic">2. תנאי סף לקבלת רישיון (סעיף 5):</h3>
-                    <div class="space-y-4 text-slate-800 font-medium">
-                        <p>✅ <b>גיל:</b> 18 ומעלה במועד הגשת הבקשה.</p>
-                        <p>✅ <b>אזרחות:</b> אזרח ישראל, תושב ישראל או תושב חוץ עם היתר עבודה חוקי.</p>
-                        <p>✅ <b>עבר פלילי:</b> לא הורשע בעבירה שיש עמה קלון ב-5 השנים האחרונות. אם המועמד ריצה מאסר, 5 השנים נספרות מיום סיום ריצוי העונש בפועל.</p>
-                        <p>✅ <b>פשיטת רגל:</b> לא פושט רגל. אם היה כזה, חייב להציג צו הפטר חלוט.</p>
-                        <p>✅ <b>השכלה:</b> 12 שנות לימוד לפחות.</p>
-                        <p>✅ <b>בחינה:</b> מעבר בחינה בציון 60 ומעלה.</p>
-                    </div>
+                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">תנאי סף ורישוי (סעיף 5)</h2>
+                    <ul class="space-y-2 text-slate-800 font-medium">
+                        <li>✅ <b>גיל 18:</b> במועד הגשת הבקשה.</li>
+                        <li>✅ <b>אזרחות/תושבות:</b> אזרח, תושב ישראל או תושב חוץ עם היתר עבודה.</li>
+                        <li>✅ <b>עבר פלילי:</b> 5 שנים ללא עבירה עם קלון. <b>המוקש:</b> אם היה מאסר, סופרים 5 שנים מהשחרור.</li>
+                        <li>✅ <b>פשיטת רגל:</b> חייב להציג צו הפטר חלוט.</li>
+                        <li>✅ <b>השכלה:</b> 12 שנות לימוד.</li>
+                    </ul>
                 </section>
+
                 <section class="bg-red-50 p-5 rounded-xl border-r-8 border-red-600">
-                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic">3. אגרות והשעיה (סעיף 18):</h3>
-                    <p class="font-bold text-slate-800">מועד התשלום השנתי: עד ה-31 במרץ.</p>
-                    <p class="bg-white p-3 text-sm border border-red-200 rounded text-slate-700 mt-2 font-bold text-red-600">שימו לב: מי שלא שילם עד המועד, רישיונו מושעה ב-1 באפריל באופן אוטומטי. פעולת תיווך שבוצעה בזמן השעיה אינה מזכה בדמי תיווך.</p>
+                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic">מוקשי אגרות (סעיף 18):</h3>
+                    <p class="font-bold text-slate-800">1. תשלום עד 31 במרץ.</p>
+                    <p class="font-bold text-slate-800">2. ב-1 באפריל: השעיה אוטומטית (אין צורך בהודעה מהרשם!).</p>
+                    <p class="font-bold text-slate-800">3. פעולה בזמן השעיה = אין עמלה, גם אם הלקוח חתם ורוצה לשלם.</p>
+                </section>
+
+                <section class="p-4 bg-slate-100 rounded-lg">
+                    <h3 class="font-bold text-lg text-slate-800 mb-2 underline italic">רשם המתווכים:</h3>
+                    <p>ממונה ע"י שר המשפטים. חייב להיות משפטן הכשיר להיות שופט שלום. מנהל את הפנקס הפתוח לציבור.</p>
                 </section>
             </div>
         `,
         questions: [
-            { q: "מתי נספרות 5 השנים ללא קלון אם אדם ישב במאסר?", options: ["מיום גזר הדין", "מיום סיום ריצוי העונש בפועל", "מיום הגשת הבקשה", "מיום ביצוע העבירה"], correct: 1, exp: "סעיף 5 קובע שהספירה מתחילה רק לאחר סיום ריצוי העונש." }
+            { q: "אדם הורשע בעבירה עם קלון ונידון ל-2 שנות מאסר. הוא השתחרר ב-2024. מתי יוכל לקבל רישיון?", options: ["2026", "2024", "2029", "2031"], correct: 2, exp: "5 שנים מיום השחרור (2024 + 5 = 2029)." },
+            { q: "מתווך שילם את האגרה ב-2 באפריל וביצע עסקה ב-3 באפריל. האם הוא זכאי לדמי תיווך?", options: ["כן, כי הוא שילם לפני העסקה", "לא, כי הוא מושעה לנצח", "רק אם קיבל אישור מהרשם", "כן, אבל עם קנס"], correct: 0, exp: "מרגע ששילם ההשעיה מבוטלת. אם העסקה בוצעה אחרי התשלום, הוא זכאי." }
         ]
     },
     {
         id: 1,
-        title: "פרק 2: הזמנה בכתב וזכאות לדמי תיווך",
+        title: "פרק 2: הזמנה בכתב וזכאות",
         content: `
             <div class="space-y-6 text-right" dir="rtl">
-                <section>
-                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">1. דרישת הכתב (סעיף 9)</h2>
-                    <p class="text-lg leading-relaxed font-medium text-slate-700">זוהי דרישה מהותית. ללא הזמנה חתומה בכתב, אין זכאות לדמי תיווך, אפילו אם המתווך עבד קשה מאוד.</p>
-                </section>
                 <section class="bg-amber-50 p-5 rounded-xl border-r-8 border-amber-500 shadow-md">
-                    <h3 class="font-bold text-amber-900 mb-4 text-xl underline italic">2. חמשת פרטי החובה בהזמנה:</h3>
-                    <ul class="space-y-3 text-slate-800 font-bold">
-                        <li>👤 1. שמות, כתובות ותעודות זהות של המתווך והלקוח.</li>
-                        <li>🏠 2. סוג העסקה (מכירה, קנייה, שכירות).</li>
-                        <li>📍 3. תיאור המקרקעין (זיהוי הנכס).</li>
-                        <li>💰 4. מחיר העסקה בקירוב.</li>
-                        <li>📊 5. דמי התיווך המוסכמים.</li>
-                    </ul>
+                    <h2 class="text-2xl font-black text-amber-900 mb-4 border-b-2 border-amber-600 pb-2 italic">חמשת פרטי החובה (תקנות 97):</h2>
+                    <p class="mb-4 font-bold text-red-700 italic">זכור: חסרון של אחד מהם עלול להפיל תביעה לעמלה!</p>
+                    <ol class="list-decimal pr-6 space-y-2 font-bold">
+                        <li>שמות, כתובות ות.ז (מתווך + לקוח).</li>
+                        <li>סוג העסקה (מכירה/שכירות).</li>
+                        <li>תיאור הנכס (כתובת או תיאור מזהה).</li>
+                        <li>מחיר מבוקש בקירוב.</li>
+                        <li>דמי התיווך המוסכמים (בשקלים או אחוזים + מעמ לפרטי).</li>
+                    </ol>
                 </section>
-                <section class="bg-red-50 p-5 rounded-xl border-r-8 border-red-600 shadow-md text-right">
-                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic italic font-bold">3. איסור פעולות משפטיות (סעיף 12):</h3>
-                    <p class="text-slate-700">מתווך לא יסייע בעריכת מסמכים משפטיים כמו זיכרון דברים או חוזה. עריכת מסמך כזה שוללת את הזכאות לדמי תיווך באופן מוחלט.</p>
+
+                <section class="bg-red-50 p-5 rounded-xl border-r-8 border-red-600">
+                    <h3 class="font-bold text-red-900 mb-3 text-xl underline italic italic font-bold">איסור פעולה משפטית (סעיף 12):</h3>
+                    <p class="font-bold text-slate-800 italic underline italic">המכשלה הכי גדולה בבחינה:</p>
+                    <p>מתווך שעזר לכתוב זיכרון דברים או חוזה - <b>מפסיד את כל העמלה שלו</b>, גם אם יש לו הזמנה חתומה ובלעדיות.</p>
+                </section>
+
+                <section class="p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-bold text-lg text-blue-800 mb-2 italic underline italic">תנאי הזכאות (סעיף 14):</h3>
+                    <p>1. רישיון בתוקף. 2. הזמנה תקינה. 3. גורם יעיל.</p>
                 </section>
             </div>
         `,
         questions: [
-            { q: "האם מתווך שערך זיכרון דברים זכאי לעמלה?", options: ["כן, אם העסקה הצליחה", "לא, זהו איסור מוחלט בחוק", "רק חצי מהסכום", "רק אם הלקוח ויתר לו"], correct: 1, exp: "סעיף 12 קובע שפעולה משפטית מבטלת את הזכאות לדמי תיווך." }
+            { q: "האם מתווך רשאי למלא עבור הצדדים את פרטי הנכס בזיכרון דברים?", options: ["כן, זה שירות ללקוח", "מותר רק אם הוא לא לוקח כסף על זה", "אסור מוחלט ושולל עמלה", "מותר רק בבלעדיות"], correct: 2, exp: "סעיף 12 אוסר סיוע בעריכת מסמך משפטי מכל סוג." }
         ]
     },
     {
         id: 2,
-        title: "פרק 3: בלעדיות (תקופות ופעולות שיווק)",
+        title: "פרק 3: בלעדיות (תקופות ושיווק)",
         content: `
             <div class="space-y-6 text-right" dir="rtl">
-                <section>
-                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">1. תנאים למתן בלעדיות (סעיף 9ב)</h2>
-                    <p class="text-lg leading-relaxed font-medium text-slate-700">כדי שתהיה בלעדיות תקפה, חייבים להתקיים שני תנאים נוספים מעבר להזמנה הרגילה:</p>
-                    <ul class="list-disc pr-6 space-y-2 font-bold text-blue-900">
-                        <li>הבלעדיות תאושר במסמך נפרד מהזמנת התיווך.</li>
-                        <li>המתווך יבצע לפחות שתי פעולות שיווק (שלט, פרסום בעיתון, אינטרנט וכדומה).</li>
+                <section class="bg-blue-50 p-5 rounded-xl border-r-8 border-blue-600 shadow-md">
+                    <h2 class="text-2xl font-black text-blue-800 mb-4 border-b-2 border-blue-600 pb-2 italic">כללי הבלעדיות (סעיף 9ב):</h2>
+                    <p class="font-bold">1. חייב מסמך נפרד מההזמנה הרגילה.</p>
+                    <p class="font-bold">2. המתווך חייב לבצע 2 פעולות שיווק לפחות (שלט, עיתון, אינטרנט וכו').</p>
+                </section>
+
+                <section class="bg-amber-50 p-5 rounded-xl border-r-8 border-amber-500">
+                    <h3 class="font-bold text-amber-900 mb-3 text-xl underline italic">תקופות זמן (הכי חשוב לבחינה!):</h3>
+                    <ul class="space-y-3 font-bold">
+                        <li>🏠 <b>דירת מגורים:</b> עד 6 חודשים.</li>
+                        <li>🕒 <b>דירת מגורים ללא ציון זמן:</b> מסתיים תוך 30 יום.</li>
+                        <li>🏗️ <b>נכס אחר (עסקי/מגרש):</b> כמה שסיכמו. לא סיכמו? שנה.</li>
                     </ul>
                 </section>
-                <section class="bg-blue-50 p-5 rounded-xl border-r-8 border-blue-600 shadow-md">
-                    <h3 class="font-bold text-blue-900 mb-4 text-xl underline italic">2. תקופות הבלעדיות (סעיף 9):</h3>
-                    <div class="space-y-3 font-semibold text-slate-700">
-                        <p>🏠 <b>דירה למגורים:</b> תקופת הבלעדיות המקסימלית היא <b>6 חודשים</b>.</p>
-                        <p>🏗️ <b>נכס אחר (מגרש, חנות):</b> אין הגבלה בחוק, אך אם לא סוכם - הבלעדיות מסתיימת תוך שנה.</p>
-                        <p>⚠️ <b>ללא ציון תקופה:</b> אם בנכס למגורים לא צוינה תקופה, הבלעדיות מסתיימת תוך <b>30 יום</b>.</p>
-                    </div>
-                </section>
-                <section class="bg-green-50 p-5 rounded-xl border-r-8 border-green-600 shadow-sm">
-                    <h3 class="font-bold text-green-900 mb-3 text-xl underline italic text-right">3. חזקת הגורם היעיל:</h3>
-                    <p class="text-slate-700 font-medium">מתווך בבלעדיות שנהג לפי החוק (ביצע פעולות שיווק), חזקה עליו שהיה הגורם היעיל בעסקה, גם אם הקונה הגיע ממקור אחר בתקופה זו.</p>
+
+                <section class="p-4 bg-green-50 rounded-lg">
+                    <h3 class="font-bold text-green-900 mb-2">חזקת הגורם היעיל:</h3>
+                    <p>מתווך שעשה פעולות שיווק בבלעדיות, החוק מניח שהוא הגורם היעיל. הלקוח הוא זה שיצטרך להוכיח בבית משפט שהמתווך לא היה יעיל כדי להתחמק מתשלום.</p>
                 </section>
             </div>
         `,
         questions: [
-            { q: "מהי תקופת הבלעדיות המקסימלית לדירת מגורים?", options: ["שנה", "3 חודשים", "6 חודשים", "אין הגבלה"], correct: 2, exp: "סעיף 9(ב)(1) קובע מקסימום של חצי שנה לדירת מגורים." },
-            { q: "מה קורה אם לא צוינה תקופת הבלעדיות בדירת מגורים?", options: ["היא מבוטלת מיד", "היא תקפה ל-6 חודשים", "היא תקפה ל-30 יום", "היא תקפה לשנה"], correct: 2, exp: "לפי סעיף 9, בהיעדר סיכום על תקופה בנכס מגורים, הבלעדיות פוקעת תוך חודש." }
+            { q: "נכס בבלעדיות למגורים שבו לא נרשם תאריך סיום. מתי הבלעדיות פוקעת?", options: ["אחרי 6 חודשים", "אחרי 30 יום", "אחרי שנה", "היא לא תקפה בכלל"], correct: 1, exp: "סעיף 9 קובע שבהיעדר תאריך בנכס מגורים, הבלעדיות היא ל-30 יום בלבד." },
+            { q: "האם מותר לרשום בלעדיות לדירת מגורים לשנה שלמה?", options: ["כן, אם הצדדים הסכימו", "לא, המקסימום הוא חצי שנה", "רק אם זה נכס מסחרי", "כן, אם המתווך משלם על השיווק"], correct: 1, exp: "החוק מגביל בלעדיות למגורים ל-6 חודשים בלבד." }
         ]
     }
 ];
