@@ -1,110 +1,83 @@
-let currentChapterQ = 0;
+let currentQ = 0;
 
 function router(view) {
-    const screens = ['home', 'lessons', 'study'];
-    screens.forEach(s => {
-        const el = document.getElementById(`view-${s}`);
-        if(el) el.classList.add('hidden');
-    });
+    document.getElementById('view-home').classList.add('hidden');
+    document.getElementById('view-lessons').classList.add('hidden');
+    document.getElementById('view-study').classList.add('hidden');
+    document.getElementById(`view-${view}`).classList.remove('hidden');
     
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    
-    const target = document.getElementById(`view-${view}`);
-    if(target) target.classList.remove('hidden');
-    
-    const navId = (view === 'study') ? 'nav-lessons' : `nav-${view}`;
-    const navEl = document.getElementById(navId);
-    if(navEl) navEl.classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    const navItem = document.getElementById(`n-${view === 'study' ? 'lessons' : view}`);
+    if(navItem) navItem.classList.add('active');
 
     if(view === 'lessons') renderLessons();
-    document.getElementById('main-view').scrollTop = 0;
+    document.getElementById('main-content').scrollTop = 0;
 }
 
 function renderLessons() {
-    const list = document.getElementById('lessons-list');
-    list.innerHTML = APP_DATA.map(l => `
-        <div onclick="openLesson(${l.id})" class="lesson-card shadow-sm flex justify-between items-center group mb-3 border-2 border-slate-100 p-5 rounded-xl cursor-pointer">
-            <div class="text-right">
-                <span class="block text-xs font-bold text-blue-500 mb-1 uppercase">פרק ${l.id + 1}</span>
-                <span class="text-lg font-bold text-slate-700">${l.title}</span>
-            </div>
-            <span class="text-2xl">📖</span>
-        </div>
-    `).join('');
+    const list = document.getElementById('view-lessons');
+    list.innerHTML = `<h3 class="font-black text-xl mb-4 pr-2">תכנית הלימודים</h3>`;
+    APP_DATA.forEach(lesson => {
+        list.innerHTML += `
+            <div onclick="openLesson(${lesson.id})" class="bg-white p-5 rounded-2xl border-2 border-slate-100 shadow-sm flex justify-between items-center cursor-pointer hover:border-blue-300">
+                <div class="text-right">
+                    <span class="block text-xs font-bold text-blue-500 uppercase">פרק ${lesson.id + 1}</span>
+                    <span class="text-lg font-bold text-slate-700">${lesson.title}</span>
+                </div>
+                <span class="text-2xl">📖</span>
+            </div>`;
+    });
 }
 
 function openLesson(id) {
     const lesson = APP_DATA.find(l => l.id === id);
-    document.getElementById('study-content').innerHTML = lesson.content;
-    currentChapterQ = 0;
-    
-    // יצירת אזור השאלות אם הוא לא קיים
-    let quizArea = document.getElementById('chapter-quiz-container');
-    if (!quizArea) {
-        quizArea = document.createElement('div');
-        quizArea.id = 'chapter-quiz-container';
-        document.getElementById('view-study').appendChild(quizArea);
-    }
-    
-    renderChapterQuiz(lesson);
+    document.getElementById('lesson-text').innerHTML = lesson.content;
+    currentQ = 0;
+    renderQuiz(lesson);
     router('study');
 }
 
-function renderChapterQuiz(lesson) {
-    const container = document.getElementById('chapter-quiz-container');
-    const q = lesson.questions[currentChapterQ];
-    
+function renderQuiz(lesson) {
+    const container = document.getElementById('lesson-quiz');
+    const q = lesson.questions[currentQ];
     container.innerHTML = `
-        <div class="mt-10 pt-10 border-t-2 border-dashed border-slate-200">
-            <h3 class="font-bold text-xl mb-6 text-blue-800 text-right">תרגול נושא: ${lesson.title}</h3>
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                <div class="text-xs font-bold text-slate-400 mb-2 text-right">שאלה ${currentChapterQ + 1} מתוך ${lesson.questions.length}</div>
-                <p class="font-bold text-lg text-slate-800 mb-6 text-right">${q.q}</p>
-                <div class="grid gap-3">
-                    ${q.options.map((opt, i) => `
-                        <button onclick="checkAnswer(${i}, ${lesson.id})" class="chapter-quiz-btn w-full text-right p-4 border-2 border-white bg-white rounded-xl shadow-sm font-bold text-slate-700 hover:border-blue-200 transition-all">${opt}</button>
-                    `).join('')}
-                </div>
-                <div id="quiz-feedback" class="hidden mt-6 p-4 rounded-xl text-sm font-bold"></div>
-                <button id="next-q-btn" onclick="nextChapterQ(${lesson.id})" class="hidden mt-4 w-full bg-slate-800 text-white p-4 rounded-xl font-bold">לשאלה הבאה ←</button>
+        <div class="bg-slate-800 rounded-3xl p-6 text-white text-right">
+            <div class="text-xs opacity-60 mb-2">תרגול פרק: שאלה ${currentQ + 1}/${lesson.questions.length}</div>
+            <p class="text-lg font-bold mb-6">${q.q}</p>
+            <div class="space-y-3">
+                ${q.options.map((o, i) => `<button onclick="checkAns(${i}, ${lesson.id})" class="q-btn w-full p-4 bg-white/10 rounded-xl text-right hover:bg-white/20 transition-all">${o}</button>`).join('')}
             </div>
-        </div>
-    `;
+            <div id="fb" class="hidden mt-4 p-4 rounded-xl text-sm font-bold"></div>
+            <button id="next-btn" onclick="nextQ(${lesson.id})" class="hidden mt-4 w-full bg-blue-500 p-4 rounded-xl font-bold">המשך ←</button>
+        </div>`;
 }
 
-function checkAnswer(idx, lessonId) {
-    const lesson = APP_DATA.find(l => l.id === lessonId);
-    const q = lesson.questions[currentChapterQ];
-    const feedback = document.getElementById('quiz-feedback');
-    const btns = document.querySelectorAll('.chapter-quiz-btn');
+function checkAns(idx, lessonId) {
+    const q = APP_DATA.find(l => l.id === lessonId).questions[currentQ];
+    const fb = document.getElementById('fb');
+    document.querySelectorAll('.q-btn').forEach(b => b.disabled = true);
+    fb.classList.remove('hidden');
     
-    btns.forEach(b => b.disabled = true);
-    feedback.classList.remove('hidden');
-
     if(idx === q.correct) {
-        btns[idx].classList.add('bg-green-50', 'border-green-500', 'text-green-700');
-        feedback.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-green-100 text-green-800 block text-right";
-        feedback.innerHTML = "🎯 נכון! " + q.exp;
+        fb.className = "mt-4 p-4 rounded-xl text-sm font-bold bg-green-500/20 text-green-300";
+        fb.innerHTML = "🎯 נכון! " + q.exp;
     } else {
-        btns[idx].classList.add('bg-red-50', 'border-red-500', 'text-red-700');
-        btns[q.correct].classList.add('bg-green-50', 'border-green-500');
-        feedback.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-red-100 text-red-800 block text-right";
-        feedback.innerHTML = "💡 לא מדויק. " + q.exp;
+        fb.className = "mt-4 p-4 rounded-xl text-sm font-bold bg-red-500/20 text-red-300";
+        fb.innerHTML = "💡 טעות. המענה הנכון: " + q.options[q.correct] + ". " + q.exp;
     }
-    
-    if(currentChapterQ < lesson.questions.length - 1) {
-        document.getElementById('next-q-btn').classList.remove('hidden');
-    } else {
-        const nextBtn = document.getElementById('next-q-btn');
-        nextBtn.textContent = "סיימת את תרגול הפרק!";
-        nextBtn.classList.remove('hidden');
-        nextBtn.onclick = () => router('lessons');
-    }
+    document.getElementById('next-btn').classList.remove('hidden');
 }
 
-function nextChapterQ(lessonId) {
-    currentChapterQ++;
-    renderChapterQuiz(APP_DATA.find(l => l.id === lessonId));
+function nextQ(lessonId) {
+    const lesson = APP_DATA.find(l => l.id === lessonId);
+    currentQ++;
+    if(currentQ < lesson.questions.length) renderQuiz(lesson);
+    else {
+        document.getElementById('lesson-quiz').innerHTML = `
+            <div class="bg-green-600 p-6 rounded-3xl text-white text-center font-bold">
+                <p class="text-xl mb-2">כל הכבוד! 🎉</p>
+                <p>סיימת את תרגול הפרק בהצלחה.</p>
+                <button onclick="router('lessons')" class="mt-4 bg-white text-green-600 px-6 py-2 rounded-full">חזרה לסילבוס</button>
+            </div>`;
+    }
 }
-
-window.onload = () => router('home');
