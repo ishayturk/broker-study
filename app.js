@@ -1,7 +1,11 @@
 // app.js
+let currentQIndex = 0;
+let quizQuestions = [];
+let score = 0;
+
 function router(view) {
-    const views = ['home', 'lessons', 'study', 'exams'];
-    views.forEach(v => document.getElementById(`view-${v}`).classList.add('hidden'));
+    const screens = ['home', 'lessons', 'study', 'exams'];
+    screens.forEach(s => document.getElementById(`view-${s}`).classList.add('hidden'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
 
     document.getElementById(`view-${view}`).classList.remove('hidden');
@@ -9,16 +13,16 @@ function router(view) {
     document.getElementById(navId).classList.add('active');
 
     if(view === 'lessons') renderLessons();
-    if(view === 'exams') renderQuiz();
+    if(view === 'exams') initQuiz();
     document.getElementById('main-view').scrollTop = 0;
 }
 
 function renderLessons() {
     const list = document.getElementById('lessons-list');
-    list.innerHTML = APP_DATA.map(lesson => `
-        <div onclick="openLesson(${lesson.id})" class="bg-white p-5 rounded-xl border-2 border-slate-100 shadow-sm flex justify-between items-center cursor-pointer active:bg-blue-50">
-            <span class="font-bold text-slate-700">${lesson.title}</span>
-            <span class="text-blue-500">📖</span>
+    list.innerHTML = APP_DATA.map(l => `
+        <div onclick="openLesson(${l.id})" class="bg-white p-5 rounded-xl border-2 border-slate-100 shadow-sm flex justify-between items-center cursor-pointer mb-2">
+            <span class="font-bold text-slate-700">${l.title}</span>
+            <span class="text-blue-500">למד 📖</span>
         </div>
     `).join('');
 }
@@ -29,28 +33,64 @@ function openLesson(id) {
     router('study');
 }
 
-function renderQuiz() {
-    const area = document.getElementById('quiz-area');
-    const allQ = [];
-    APP_DATA.forEach(l => allQ.push(...l.questions));
+function initQuiz() {
+    quizQuestions = [];
+    APP_DATA.forEach(l => quizQuestions.push(...l.questions));
+    currentQIndex = 0;
+    score = 0;
+    renderQuestion();
+}
 
-    if(allQ.length === 0) {
-        area.innerHTML = "<p class='text-center p-10'>עדיין אין שאלות.</p>";
-        return;
-    }
+function renderQuestion() {
+    const area = document.getElementById('view-exams');
+    const q = quizQuestions[currentQIndex];
 
-    const q = allQ[0]; // כרגע מציג רק שאלה ראשונה כבדיקה
     area.innerHTML = `
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100">
-            <h3 class="font-bold text-lg mb-6">${q.q}</h3>
-            <div class="space-y-3">
+        <div class="bg-blue-50 p-3 rounded-lg mb-4 text-center font-bold text-blue-800">
+            שאלה ${currentQIndex + 1} מתוך ${quizQuestions.length}
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h3 class="font-bold text-lg mb-6 text-right">${q.q}</h3>
+            <div id="options-grid" class="space-y-3">
                 ${q.options.map((opt, i) => `
-                    <button onclick="alert('${i === q.correct ? 'נכון!' : 'טעות'}')" class="w-full text-right p-4 border-2 rounded-xl hover:border-blue-500 font-bold text-slate-700">${opt}</button>
+                    <button onclick="handleAnswer(${i})" class="quiz-btn w-full text-right p-4 border-2 rounded-xl font-bold transition-all">${opt}</button>
                 `).join('')}
             </div>
+            <div id="feedback" class="hidden mt-6 p-4 rounded-xl text-sm font-bold"></div>
+            <button id="next-btn" onclick="nextQuestion()" class="hidden mt-4 w-full bg-blue-600 text-white p-4 rounded-xl font-bold">לשאלה הבאה ←</button>
         </div>
     `;
 }
 
-// אתחול
+function handleAnswer(selected) {
+    const q = quizQuestions[currentQIndex];
+    const feedback = document.getElementById('feedback');
+    const btns = document.querySelectorAll('.quiz-btn');
+    
+    btns.forEach(b => b.disabled = true);
+    
+    if(selected === q.correct) {
+        btns[selected].classList.add('bg-green-100', 'border-green-500');
+        feedback.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-green-50 text-green-700 block";
+        feedback.innerHTML = "✅ נכון מאוד! " + q.exp;
+        score++;
+    } else {
+        btns[selected].classList.add('bg-red-100', 'border-red-500');
+        btns[q.correct].classList.add('bg-green-100', 'border-green-500');
+        feedback.className = "mt-6 p-4 rounded-xl text-sm font-bold bg-red-50 text-red-700 block";
+        feedback.innerHTML = "❌ טעות. " + q.exp;
+    }
+    document.getElementById('next-btn').classList.remove('hidden');
+}
+
+function nextQuestion() {
+    currentQIndex++;
+    if(currentQIndex < quizQuestions.length) {
+        renderQuestion();
+    } else {
+        alert(`סיימת! ציון: ${Math.round(score/quizQuestions.length*100)}`);
+        router('home');
+    }
+}
+
 router('home');
